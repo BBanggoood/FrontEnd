@@ -1,0 +1,94 @@
+/* 선호 컨텐츠 선택 페이지 스타일 */
+
+.contents-selection-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #F2D4C2;
+}
+
+.contents-container {
+    display: flex;
+    background-color: #FFF6F1;
+    border-radius: 57px;
+    width: 900px;
+    height: 500px;
+    padding: 20px;
+    position: relative;
+}
+
+.sidebar {
+    background-color: #875D4F;
+    border-radius: 57px 0 0 57px;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.circle {
+    width: 11px;
+    height: 11px;
+    border: 2px solid #FFFDFD;
+    border-radius: 50%;
+    margin: 40px 0; /* 간격 4배 증가 */
+}
+
+.contents-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.contents-content h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #000000;
+}
+
+.contents-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px; /* 간격 1.5배 증가 */
+}
+
+.contents-box {
+    width: 96px; /* 크기 1.5배 증가 */
+    height: 108px; /* 크기 1.5배 증가 */
+    background: #FFFFFF;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+}
+
+.contents-box.selected {
+    border-color: #875D4F;
+}
+
+.next-button {
+    width: 106px;
+    height: 34px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid #875D4F;
+    border-radius: 25px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #000000;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.next-button:disabled {
+    background: rgba(255, 255, 255, 0.2);
+    cursor: not-allowed;
+}
