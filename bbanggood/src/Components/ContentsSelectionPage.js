@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../CSS/ContentsSelectionPage.css'; // 선호 컨텐츠 선택 페이지용 CSS 파일 import
 
-const contents = [
-    '컨텐츠 1', '컨텐츠 2', '컨텐츠 3', '컨텐츠 4',
-    '컨텐츠 5', '컨텐츠 6', '컨텐츠 7', '컨텐츠 8'
-];
+const contents = Array.from({ length: 20 }, (_, i) => `콘텐츠 ${i + 1}`);
 
 const ContentsSelectionPage = () => {
     const [selectedContents, setSelectedContents] = useState([]);
@@ -20,21 +17,21 @@ const ContentsSelectionPage = () => {
     };
 
     const handleNextClick = () => {
-        if (selectedContents.length >= 3) {
+        if (selectedContents.length >= 5) {
             navigate('/initial2');
         }
     };
 
     return (
         <div className="contents-selection-page">
-            <div className="contents-container">
-                <div className="sidebar">
+            <div className="contents-outer-rectangle">
+                <div className="contents-sidebar">
                     <div className="circle"></div>
                     <div className="circle"></div>
                     <div className="circle"></div>
                 </div>
-                <div className="contents-content">
-                    <h2>좋아하는 컨텐츠를 선택해주세요 (3개 이상)</h2>
+                <div className="contents-inner-rectangle">
+                    <h1 style={{ fontSize: '1.7em' }}>좋아하는 컨텐츠를 선택해주세요 (5개 이상)</h1>
                     <div className="contents-grid">
                         {contents.map((content, index) => (
                             <div
@@ -47,9 +44,9 @@ const ContentsSelectionPage = () => {
                         ))}
                     </div>
                     <button
-                        className="next-button"
+                        className="contents-next-button"
                         onClick={handleNextClick}
-                        disabled={selectedContents.length < 3}
+                        disabled={selectedContents.length < 5}
                     >
                         다음
                     </button>
