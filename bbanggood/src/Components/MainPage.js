@@ -58,19 +58,36 @@ const MainPage = () => {
         }
     };
 
+    const banners = [
+        '배너 광고 1',
+        '배너 광고 2',
+        '배너 광고 3',
+        '배너 광고 4',
+        '배너 광고 5'
+    ];
+    const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
+
+    const handleNextBanner = () => {
+        setCurrentBannerIndex((prevIndex) => (prevIndex + 1) % banners.length);
+    };
+
+    const handlePrevBanner = () => {
+        setCurrentBannerIndex((prevIndex) => (prevIndex - 1 + banners.length) % banners.length);
+    };
+
     return (
         <div className="main-page">
             <div className="main-page-container">
                 <div className="main-page-banner-ad">
-                    <div className="banner-arrow left-arrow">
+                    <div className="banner-arrow left-arrow" onClick={handlePrevBanner}>
                         ◀
                     </div>
-                    <div className="main-page-banner-text">배 너 광 고</div>
-                    <div className="banner-arrow right-arrow">
+                    <div className="main-page-banner-text">{banners[currentBannerIndex]}</div>
+                    <div className="banner-arrow right-arrow" onClick={handleNextBanner}>
                         ▶
                     </div>
                     <div className="banner-pagination">
-                        1 / 5
+                        {currentBannerIndex + 1} / {banners.length}
                     </div>
                 </div>
                 <div className="main-page-content-section">
