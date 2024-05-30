@@ -1,0 +1,100 @@
+/* 회원가입 페이지 스타일 */
+
+.signup-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #F2D4C2; /* 배경색 지정 */
+}
+
+.signup-rectangle {
+    width: 1410px; /* 초기화면2와 동일한 너비 */
+    height: 610px; /* 초기화면2와 동일한 높이 */
+    background-color: #FFF4EF; /* 외부 사각형의 배경색 지정 */
+    border-radius: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1000px; /* 폼의 최대 너비 설정 */
+    height: 100%; /* 폼의 높이 설정 */
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* 간격 조정 */
+    width: 100%;
+    height: 40px; /* 줄 높이 조정 */
+}
+
+.input-group label {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px; /* 폰트 크기 감소 */
+    color: #000000;
+    width: 200px; /* 레이블의 너비 조정 */
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+    margin-right: 10px; /* 레이블과 입력 필드 사이 여백 */
+}
+
+.input-field, .select-field {
+    width: 300px; /* 모든 입력 필드의 너비 동일하게 설정 */
+    height: 30px; /* 입력 필드의 높이 감소 */
+    background: #FFFDFD;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: none;
+    border-radius: 30px;
+    padding: 5px;
+    font-size: 14px; /* 폰트 크기 감소 */
+    margin-right: 10px; /* 입력 필드와 버튼 사이 여백 */
+}
+
+.check-button, .invisible-button {
+    width: 120px; /* 버튼 너비 조정 */
+    height: 30px; /* 버튼 높이 조정 */
+    background: #C68C7A;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px; /* 폰트 크기 조정 */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.invisible-button {
+    visibility: hidden; /* 버튼을 보이지 않게 설정 */
+}
+
+.check-button:hover {
+    background-color: #A56B5A;
+}
+
+.signup-next-button {
+    align-self: flex-end;
+    width: 100px; /* 버튼 너비 조정 */
+    height: 40px; /* 버튼 높이 조정 */
+    background: #C68C7A;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px; /* 폰트 크기 조정 */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+.next-button:hover {
+    background-color: #A56B5A;
+}

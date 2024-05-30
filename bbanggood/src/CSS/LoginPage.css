@@ -1,0 +1,93 @@
+/* 로그인 페이지 스타일 */
+
+.login-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #B89079; /* 배경색 지정 */
+}
+
+.login-rectangle {
+    width: 1450px;
+    height: 650px;
+    background-color: #FFF4EF; /* 외부 사각형의 배경색 지정 */
+    border-radius: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inner-rectangle {
+    width: 1000px; /* 크기 증가 */
+    height: 500px; /* 높이 증가 */
+    background: #FFF4EF; /* 내부 사각형의 배경색 지정 */
+    border-radius: 34px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin-top: 100px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    width: 100%;
+    justify-content: center; /* 가운데 정렬 */
+}
+
+.input-group label {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px; /* 폰트 크기 증가 */
+    line-height: 24px;
+    color: #000000;
+    margin-right: 20px;
+    width: 400px; /* 레이블의 너비 증가 */
+    text-align: center; /* 텍스트 정렬 */
+}
+
+.input-field {
+    width: 400px; /* 입력 필드의 너비 증가 */
+    height: 50px; /* 입력 필드의 높이 증가 */
+    background: #FFFDFD;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: none;
+    border-radius: 30px;
+    padding: 10px;
+    font-size: 24px; /* 폰트 크기 증가 */
+}
+
+.login-button {
+    width: 189px; /* 1.5배 크기 */
+    height: 60px; /* 1.5배 크기 */
+    background: #FFFDFD;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: none;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px; /* 폰트 크기 증가 */
+    color: #000000;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 40px; /* 로그인 버튼을 아래로 배치 */
+}
+
+.login-button:hover {
+    background-color: #C68C7A;
+}
+
+.login-icon {
+    width: 30.62px; /* 1.5배 크기 */
+    height: 28.5px; /* 1.5배 크기 */
+    margin-right: 15px; /* 1.5배 크기 */
+}
