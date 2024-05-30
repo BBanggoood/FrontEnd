@@ -9,7 +9,7 @@ const LoginPage = () => {
     const handleLogin = () => {
         // 로그인 처리 로직을 여기에 추가할 수 있습니다.
         // 로그인 성공 시 메인 페이지로 이동
-        navigate('/home');
+        navigate('/mainpage');
     }
 
     return (
