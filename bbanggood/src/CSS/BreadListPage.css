@@ -1,0 +1,71 @@
+.bread-list-page {
+    padding: 20px;
+    background-color: #FFF6F1;
+}
+
+.bread-list-page-container {
+    width: 1082px;
+    background: #FFE3B0;
+    border-radius: 40px;
+    padding: 20px;
+    margin: 20px auto;
+    opacity: 0.9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.bread-list-section {
+    margin-bottom: 20px;
+}
+
+.bread-list-section h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 36px;
+    color: #000;
+    text-align: left;
+    margin-left: 20px;
+}
+
+.content-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* 각 콘텐츠 박스를 중앙에 정렬 */
+    width: 100%;
+    padding: 20px;
+    position: relative; /* 상대 위치 */
+    box-sizing: border-box; /* 패딩과 보더를 포함한 박스 크기 계산 */
+}
+
+.content-box {
+    width: 190px; /* 콘텐츠 박스 크기 증가 */
+    height: 240px; /* 콘텐츠 박스 크기 증가 */
+    background: #FFF;
+    border-radius: 20px;
+    margin: 0 10px; /* 각 박스 사이에 동일한 간격 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+}
+
+.content-arrow-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* 화살표 컨테이너 너비 */
+    box-sizing: border-box; /* 패딩과 보더를 포함한 박스 크기 계산 */
+}
+
+.content-arrow-container.left {
+    margin-left: 20px; /* 왼쪽 화살표 컨테이너 간격 조정 */
+}
+
+.content-arrow-container.right {
+    margin-right: 20px; /* 오른쪽 화살표 컨테이너 간격 조정 */
+}
+
+.content-arrow {
+    cursor: pointer;
+    font-size: 36px;
+    color: #644A41;
+}

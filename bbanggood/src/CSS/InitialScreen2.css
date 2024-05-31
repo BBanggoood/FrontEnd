@@ -1,0 +1,64 @@
+/* 초기 화면2 스타일 */
+
+.initial-screen2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #F2D4C2;
+}
+
+.outer-rectangle2 {
+    width: 1450px;
+    height: 650px;
+    background-color: #FFF4EF;
+    border-radius: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row; /* 가로 배치 */
+}
+
+.rectangle-set {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 30px; /* 1.5배 크기로 조정 */
+    width: 450px; /* 1.5배 크기로 조정 */
+    height: 600px; /* 1.5배 크기로 조정 */
+    cursor: pointer;
+}
+
+.rectangle-565, .rectangle-566 {
+    width: 375px; /* 1.5배 크기로 조정 */
+    height: 300px; /* 1.5배 크기로 조정 */
+    background-color: #F2D4C2;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.rectangle-565:hover, .rectangle-566:hover {
+    background-color: #884834;
+}
+
+.initial2-logo-image {
+    width: 100%; /* 크기 조정 */
+    height: auto;
+}
+
+.text {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px; /* 1.5배 크기로 조정 */
+    line-height: 43.5px;
+    text-align: center;
+    color: #000000;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
