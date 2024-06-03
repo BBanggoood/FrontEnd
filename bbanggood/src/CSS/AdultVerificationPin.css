@@ -1,0 +1,93 @@
+.adult-verification-page {
+    max-height: 600px;
+    padding: 20px;
+    background-color: #FFF6F1;
+    height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.adult-verification-container {
+    width: 1050px;
+    height: 500px;
+    background: rgba(184, 144, 121, 0.9);
+    border-radius: 40px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.adult-verification-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.adult-verification-logo {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+}
+
+.adult-verification-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 32px;
+    color: #000;
+}
+
+.adult-verification-box {
+    width: 900px;
+    height: 400px;
+    background: #936C5E;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.adult-verification-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.adult-verification-form p {
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    color: #FFF;
+    margin-bottom: 20px;
+}
+
+.adult-verification-form label {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    color: #FFF;
+    margin: 10px 0;
+}
+
+.adult-verification-form input {
+    width: 200px;
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 20px;
+    border: none;
+}
+
+.adult-verification-form button {
+    width: 150px;
+    padding: 10px;
+    background-color: #FFE5B6;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    color: #000;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.adult-verification-form button:hover {
+    background-color: #FFD9A6;
+}
