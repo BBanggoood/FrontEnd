@@ -1,3 +1,4 @@
+// src/Components/Layout.js
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import '../CSS/Layout.css';
@@ -7,9 +8,7 @@ const Layout = () => {
     return (
         <div className="layout">
             <div className="layout-sidebar">
-                <Link to="/mainpage">
-                    <img src={logo} alt="Logo" className="layout-logo" />
-                </Link>
+                <img src={logo} alt="Logo" className="layout-logo" />
                 <input type="text" placeholder="검색" className="layout-search" />
                 <div className="layout-menu">
                     <Link to="/kids">키즈</Link>
