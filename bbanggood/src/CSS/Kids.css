@@ -1,0 +1,77 @@
+.kids-page {
+    padding: 20px;
+    background-color: #FFF6F1;
+}
+
+.kids-page-container {
+    width: 1082px;
+    background: #FFE3B0;
+    border-radius: 40px;
+    padding: 20px;
+    margin: 20px auto;
+    opacity: 0.9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.kids-page-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 40px;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.kids-page-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 32px;
+    color: #000;
+    margin-top: 40px;
+}
+
+.kids-page-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.kids-page-box-container {
+    display: flex;
+    margin-left: 30px;
+    gap: 120px; /* 박스 세트 간격 조정 */
+}
+
+.kids-page-box {
+    height: calc(166px * 1.5);
+    background: #FFFFFF;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+.kids-page-box.brown {
+    background: #B89079;
+    width: calc(267px * 1.5 * 1.13); /* 흰색 박스의 1.1배 너비 */
+    height: 230px;
+    position: relative;
+}
+
+.kids-page-box.white {
+    background: #FFFFFF;
+    width: calc(267px * 1.5);
+    height: 230px;
+    position: absolute;
+    right: 0; /* 오른쪽으로 정렬 */
+}
+
+.kids-page-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 20px; /* 왼쪽 간격 추가 */
+    margin-right: 20px; /* 오른쪽 간격 추가 */
+}
+
+.kids-page-row .kids-page-box {
+    width: calc((1082px - 80px) / 3); /* 박스 너비 조정 */
+    height: 200px; /* 박스 높이 */
+    margin: 0 20px; /* 박스 간격 조정 */
+}

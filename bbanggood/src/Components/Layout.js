@@ -1,4 +1,3 @@
-// src/Components/Layout.js
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import '../CSS/Layout.css';
