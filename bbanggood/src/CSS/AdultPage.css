@@ -1,0 +1,27 @@
+.adult-page {
+    max-height: 600px;
+    padding: 20px;
+    background-color: #FFF6F1;
+    height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.adult-page-container {
+    width: 1050px; /* 너비 조정 */
+    height: 500px;
+    background: #FFE3B0;
+    border-radius: 40px;
+    padding: 30px; /* 패딩 조정 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* 콘텐츠를 중앙에 위치하게 함 */
+}
+
+.lock-image {
+    width: 450;
+    height: 300px;
+    border-radius: 10px; /* 둥근 모서리를 원한다면 추가 */
+}

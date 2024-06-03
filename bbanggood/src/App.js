@@ -7,16 +7,17 @@ import SignupPage from './Components/SignupPage';
 import GenreSelectionPage from './Components/GenreSelectionPage';
 import ContentsSelectionPage from './Components/ContentsSelectionPage';
 import MainPage from './Components/MainPage';
-import BreadListPage from './Components/BreadListPage'; // 빵 목록 페이지 import
+import BreadListPage from './Components/BreadListPage';
 import Layout from './Components/Layout';
-import MyPage from './Components/MyPage'; // 마이페이지 import
+import MyPage from './Components/MyPage';
 import Settings from './Components/Settings';
 import Help from './Components/Help';
 import Kids from './Components/Kids';
-import Drama from './Components/Drama'; // 드라마 페이지 import
-import Movie from './Components/Movie'; // 영화 페이지 import
-import TVShow from './Components/TVShow'; // TV/예능 페이지 import
-import Anime from './Components/Anime'; // 애니 페이지 import
+import Drama from './Components/Drama';
+import Movie from './Components/Movie';
+import TVShow from './Components/TVShow';
+import Anime from './Components/Anime';
+import AdultPage from './Components/AdultPage'; // 성인 페이지 import
 import './App.css';
 
 function App() {
@@ -31,15 +32,16 @@ function App() {
                 <Route path="/contents-selection" element={<ContentsSelectionPage />} />
                 <Route element={<Layout />}>
                     <Route path="/mainpage" element={<MainPage />} />
-                    <Route path="/bread-list" element={<BreadListPage />} /> {/* 빵 목록 페이지 경로 추가 */}
+                    <Route path="/bread-list" element={<BreadListPage />} />
                     <Route path="/mypage" element={<MyPage />} />
                     <Route path="/settings" element={<Settings />} />
                     <Route path="/help" element={<Help />} />
                     <Route path="/kids" element={<Kids />} />
-                    <Route path="/drama" element={<Drama />} /> {/* 드라마 페이지 경로 추가 */}
-                    <Route path="/movie" element={<Movie />} /> {/* 영화 페이지 경로 추가 */}
-                    <Route path="/tv" element={<TVShow />} /> {/* TV/예능 페이지 경로 추가 */}
-                    <Route path="/anime" element={<Anime />} /> {/* 애니 페이지 경로 추가 */}
+                    <Route path="/drama" element={<Drama />} />
+                    <Route path="/movie" element={<Movie />} />
+                    <Route path="/tvshow" element={<TVShow />} />
+                    <Route path="/anime" element={<Anime />} />
+                    <Route path="/adult" element={<AdultPage />} /> {/* 성인 페이지 경로 추가 */}
                 </Route>
             </Routes>
         </Router>
