@@ -10,6 +10,8 @@ import MainPage from './Components/MainPage';
 import BreadListPage from './Components/BreadListPage'; // 빵 목록 페이지 import
 import Layout from './Components/Layout';
 import MyPage from './Components/MyPage'; // 마이페이지 import
+import Settings from './Components/Settings';
+import Help from './Components/Help';
 import './App.css';
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
                     <Route path="/mainpage" element={<MainPage />} />
                     <Route path="/bread-list" element={<BreadListPage />} /> {/* 빵 목록 페이지 경로 추가 */}
                     <Route path="/mypage" element={<MyPage />} />
+                    <Route path="settings" element={<Settings />} />
+                    <Route path="help" element={<Help />} />
                 </Route>
             </Routes>
         </Router>
