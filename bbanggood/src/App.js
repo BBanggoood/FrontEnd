@@ -17,7 +17,9 @@ import Drama from './Components/Drama';
 import Movie from './Components/Movie';
 import TVShow from './Components/TVShow';
 import Anime from './Components/Anime';
-import AdultPage from './Components/AdultPage'; // 성인 페이지 import
+import AdultPage from './Components/AdultPage';
+import AdultVerificationPage from './Components/AdultVerificationPage';
+import AdultVerificationPinPage from './Components/AdultVerificationPinPage'; // 성인 인증 PIN 페이지 import
 import './App.css';
 
 function App() {
@@ -41,7 +43,9 @@ function App() {
                     <Route path="/movie" element={<Movie />} />
                     <Route path="/tvshow" element={<TVShow />} />
                     <Route path="/anime" element={<Anime />} />
-                    <Route path="/adult" element={<AdultPage />} /> {/* 성인 페이지 경로 추가 */}
+                    <Route path="/adult" element={<AdultPage />} />
+                    <Route path="/adult-verification" element={<AdultVerificationPage />} />
+                    <Route path="/adult-verification-pin" element={<AdultVerificationPinPage />} /> {/* 성인 인증 PIN 페이지 경로 추가 */}
                 </Route>
             </Routes>
         </Router>
