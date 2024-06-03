@@ -12,6 +12,7 @@ import Layout from './Components/Layout';
 import MyPage from './Components/MyPage'; // 마이페이지 import
 import Settings from './Components/Settings';
 import Help from './Components/Help';
+import Kids from './Components/Kids';
 import './App.css';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
                     <Route path="/mypage" element={<MyPage />} />
                     <Route path="settings" element={<Settings />} />
                     <Route path="help" element={<Help />} />
+                    <Route path="/kids" element={<Kids />} />
                 </Route>
             </Routes>
         </Router>
