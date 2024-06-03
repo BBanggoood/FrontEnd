@@ -41,7 +41,7 @@ function App() {
                     <Route path="/kids" element={<Kids />} />
                     <Route path="/drama" element={<Drama />} />
                     <Route path="/movie" element={<Movie />} />
-                    <Route path="/tvshow" element={<TVShow />} />
+                    <Route path="/tv" element={<TVShow />} />
                     <Route path="/anime" element={<Anime />} />
                     <Route path="/adult" element={<AdultPage />} />
                     <Route path="/adult-verification" element={<AdultVerificationPage />} />
