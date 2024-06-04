@@ -20,6 +20,7 @@ import Anime from './Components/Anime';
 import AdultPage from './Components/AdultPage';
 import AdultVerificationPage from './Components/AdultVerificationPage';
 import AdultVerificationPinPage from './Components/AdultVerificationPinPage'; // 성인 인증 PIN 페이지 import
+import SchedulePage from './Components/SchedulePage'; // 일정 페이지 import
 import './App.css';
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
                     <Route path="/anime" element={<Anime />} />
                     <Route path="/adult" element={<AdultPage />} />
                     <Route path="/adult-verification" element={<AdultVerificationPage />} />
+                    <Route path="/schedule" element={<SchedulePage />} /> {/* 일정 페이지 경로 추가 */}
                     <Route path="/adult-verification-pin" element={<AdultVerificationPinPage />} /> {/* 성인 인증 PIN 페이지 경로 추가 */}
                 </Route>
             </Routes>
