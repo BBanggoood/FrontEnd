@@ -1,0 +1,148 @@
+.schedule-page {
+    padding: 20px;
+    background-color: #FFF6F1;
+}
+
+.schedule-page-container {
+    width: 1082px;
+    background: #FFE3B0;
+    border-radius: 40px;
+    padding: 20px;
+    margin: 20px auto;
+    opacity: 0.9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.schedule-page-calendar-section,
+.schedule-page-timetable,
+.schedule-page-birthday-movie {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.schedule-page-calendar-section h2,
+.schedule-page-timetable h2,
+.schedule-page-birthday-movie h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 36px;
+    color: #000;
+    text-align: left;
+    margin-left: 20px;
+}
+
+.schedule-page-calendar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFF6F1;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.react-calendar {
+    width: 100%;
+    background-color: #FFF6F1;
+    border-radius: 10px;
+    border: 1px solid #ccc; /* 캘린더 전체에 테두리 추가 */
+}
+
+.react-calendar__tile {
+    margin: 0; /* 칸 간의 간격 제거 */
+    padding: 10px;
+    border: 1px solid #ccc; /* 구분선을 추가합니다 */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100px; /* 높이를 추가하여 날짜 셀의 공간을 넓힙니다 */
+    box-sizing: border-box; /* 패딩과 보더를 포함한 박스 크기 계산 */
+}
+
+.date-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* 중앙 정렬로 변경 */
+    width: 100%;
+    height: 100%;
+}
+
+.date-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 중앙 정렬로 변경 */
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.date-number {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.date-text {
+    font-size: 0.8em;
+    text-align: center;
+    color: #000 !important; /* 텍스트 색상을 검은색으로 강제 설정 */
+}
+
+.react-calendar__tile--active {
+    background-color: #B89079;
+    color: #fff;
+}
+
+.react-calendar__month-view__weekdays {
+    background-color: #B89079;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 0;
+    border-radius: 10px 10px 0 0;
+}
+
+.saturday {
+    color: blue; /* 토요일의 날짜를 파란색으로 변경 */
+}
+
+.sunday {
+    color: red; /* 일요일의 날짜를 빨간색으로 변경 */
+}
+
+
+.react-calendar__month-view__days__day--sunday .date-text,
+.saturday .date-text {
+    color: #000 !important; /* 토요일과 일요일의 텍스트 색상을 검은색으로 강제 설정 */
+}
+
+.schedule-page-timetable table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.schedule-page-timetable th,
+.schedule-page-timetable td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.birthday-movie-inputs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.birthday-movie-inputs select,
+.birthday-movie-inputs button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.birthday-movie-info {
+    background: #FFEEE5;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
+}
