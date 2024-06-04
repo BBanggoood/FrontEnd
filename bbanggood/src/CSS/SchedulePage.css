@@ -24,7 +24,7 @@
 .schedule-page-timetable h2,
 .schedule-page-birthday-movie h2 {
     font-family: 'Inter', sans-serif;
-    font-size: 36px;
+    font-size: 32px;
     color: #000;
     text-align: left;
     margin-left: 20px;
@@ -100,6 +100,14 @@
     border-radius: 10px 10px 0 0;
 }
 
+.react-calendar__month-view__weekdays__weekday--weekend:nth-child(6) abbr {
+    color: blue !important; /* 토요일의 텍스트 색상을 파란색으로 변경 */
+}
+
+.react-calendar__month-view__weekdays__weekday--weekend:nth-child(7) abbr {
+    color: red !important; /* 일요일의 텍스트 색상을 빨간색으로 변경 */
+}
+
 .saturday {
     color: blue; /* 토요일의 날짜를 파란색으로 변경 */
 }
@@ -107,7 +115,6 @@
 .sunday {
     color: red; /* 일요일의 날짜를 빨간색으로 변경 */
 }
-
 
 .react-calendar__month-view__days__day--sunday .date-text,
 .saturday .date-text {
@@ -117,6 +124,9 @@
 .schedule-page-timetable table {
     width: 100%;
     border-collapse: collapse;
+    background-color: #FFF6F1; /* 편성표 배경색: 이 부분에서 색상을 변경하세요 */
+    border-radius: 20px;
+    overflow: hidden;
 }
 
 .schedule-page-timetable th,
@@ -124,6 +134,37 @@
     padding: 10px;
     border: 1px solid #ccc;
     text-align: center;
+}
+
+.schedule-page-timetable th {
+    background-color: #B89079;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.schedule-page-timetable th:nth-child(6) {
+    color: blue; /* 토요일 텍스트 색상을 파란색으로 변경 */
+}
+
+.schedule-page-timetable th:nth-child(7) {
+    color: red; /* 일요일 텍스트 색상을 빨간색으로 변경 */
+}
+
+.schedule-page-timetable td {
+    height: 150px; /* 콘텐츠 박스 크기를 2.5배로 늘림 (기존 높이의 2.5배) */
+    /* height는 필요에 따라 조정할 수 있습니다 */
+}
+
+.schedule-page-birthday-movie {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFF6F1;
+    border-radius: 20px;
+    padding: 20px;
+    width: 1040px; /* 박스의 너비를 줄여서 노란색 박스를 넘지 않도록 조정 */
+    margin: 0 auto; /* 가운데 정렬 */
 }
 
 .birthday-movie-inputs {
@@ -134,15 +175,43 @@
 }
 
 .birthday-movie-inputs select,
-.birthday-movie-inputs button {
+.birthday-movie-inputs button,
+.birthday-movie-inputs input {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
 
+.birthday-movie-info-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
 .birthday-movie-info {
     background: #FFEEE5;
     border-radius: 20px;
-    padding: 10px;
+    padding: 20px;
     text-align: center;
+    width: 300px; /* 박스의 너비 조정 */
+    height: 150px;
+}
+
+.movie-poster {
+    width: 300px;
+    height: 400px;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    font-size: 1.2em;
+}
+
+.movie-poster img {
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
 }
