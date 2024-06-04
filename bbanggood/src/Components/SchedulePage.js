@@ -19,6 +19,7 @@ const SchedulePage = () => {
       cast: '출연진: OOO, OOO, OOO',
       synopsis: '줄거리: 어쩌구저쩌구',
       poster: 'https://via.placeholder.com/300x400' // 포스터 URL 예시
+
     });
   };
 
@@ -91,7 +92,9 @@ const SchedulePage = () => {
         <div className="schedule-page-birthday-movie">
           <h2>내 생일에 개봉한 영화는?</h2>
           <div className="birthday-movie-inputs">
+
             <input type="text" placeholder="년" />
+
             <select>
               <option>월</option>
             </select>
@@ -100,6 +103,7 @@ const SchedulePage = () => {
             </select>
             <button onClick={handleCheckMovie}>확인</button>
           </div>
+
           <div className="birthday-movie-info-container">
             {movieInfo && (
               <div className="birthday-movie-info">
@@ -115,6 +119,7 @@ const SchedulePage = () => {
               </div>
             )}
           </div>
+
         </div>
       </div>
     </div>
