@@ -18,6 +18,7 @@ const SchedulePage = () => {
       director: '감독: OOO',
       cast: '출연진: OOO, OOO, OOO',
       synopsis: '줄거리: 어쩌구저쩌구',
+      poster: 'https://via.placeholder.com/300x400' // 포스터 URL 예시
     });
   };
 
@@ -62,16 +63,16 @@ const SchedulePage = () => {
         </div>
         <div className="schedule-page-timetable">
           <h2>편성표</h2>
-          <table>
+          <table className="timetable">
             <thead>
               <tr>
-                <th>일</th>
                 <th>월</th>
                 <th>화</th>
                 <th>수</th>
                 <th>목</th>
                 <th>금</th>
                 <th>토</th>
+                <th>일</th>
               </tr>
             </thead>
             <tbody>
@@ -90,9 +91,7 @@ const SchedulePage = () => {
         <div className="schedule-page-birthday-movie">
           <h2>내 생일에 개봉한 영화는?</h2>
           <div className="birthday-movie-inputs">
-            <select>
-              <option>년</option>
-            </select>
+            <input type="text" placeholder="년" />
             <select>
               <option>월</option>
             </select>
@@ -101,15 +100,21 @@ const SchedulePage = () => {
             </select>
             <button onClick={handleCheckMovie}>확인</button>
           </div>
-          {movieInfo && (
-            <div className="birthday-movie-info">
-              <div>{movieInfo.date}에 개봉한 영화는 {movieInfo.movie}입니다.</div>
-              <div>{movieInfo.director}</div>
-              <div>{movieInfo.cast}</div>
-              <div>{movieInfo.synopsis}</div>
-              <div className="movie-poster">포스터</div>
-            </div>
-          )}
+          <div className="birthday-movie-info-container">
+            {movieInfo && (
+              <div className="birthday-movie-info">
+                <div>{movieInfo.date}에 개봉한 영화는 {movieInfo.movie}입니다.</div>
+                <div>감독: {movieInfo.director}</div>
+                <div>출연진: {movieInfo.cast}</div>
+                <div>줄거리: {movieInfo.synopsis}</div>
+              </div>
+            )}
+            {movieInfo && movieInfo.poster && (
+              <div className="movie-poster">
+                <img src={movieInfo.poster} alt="포스터" />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

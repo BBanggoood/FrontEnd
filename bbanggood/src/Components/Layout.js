@@ -20,7 +20,7 @@ const Layout = () => {
             </div>
             <div className="layout-topbar">
                 <div className="layout-topbar-menu">
-                    <Link to="/mainpage">홈페이지</Link>
+                    <Link to="/mainpage">메인페이지</Link>
                     <Link to="/schedule">일정</Link>
                     <Link to="/bread-list">빵 목록</Link>
                     <Link to="/mypage">마이페이지</Link>
