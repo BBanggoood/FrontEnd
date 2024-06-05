@@ -23,6 +23,8 @@ import AdultVerificationPinPage from './Components/AdultVerificationPinPage'; //
 import SchedulePage from './Components/SchedulePage'; // 일정 페이지 import
 import PersonalInfoEdit from './Components/PersonalInfoEdit'; // 개인정보 수정 페이지 import
 import VodDetailPage from './Components/VodDetailPage'; // VOD 상세 페이지 import
+import DirectorDetailPage from './Components/DirectorDetailPage'; // 감독 상세 페이지 import
+import ActorDetailPage from './Components/ActorDetailPage'; // 출연진 상세 페이지 import
 import './App.css';
 
 function App() {
@@ -52,6 +54,8 @@ function App() {
                     <Route path="/adult-verification-pin" element={<AdultVerificationPinPage />} /> {/* 성인 인증 PIN 페이지 경로 추가 */}
                     <Route path="/personal-info-edit" element={<PersonalInfoEdit />} /> {/* 개인정보 수정 페이지 경로 추가 */}
                     <Route path="/vod-detail" element={<VodDetailPage />} /> {/* VOD 상세 페이지 경로 추가 */}
+                    <Route path="/director-detail" element={<DirectorDetailPage />} /> {/* 감독 상세 페이지 경로 추가 */}
+                    <Route path="/actor-detail" element={<ActorDetailPage />} /> {/* 출연진 상세 페이지 경로 추가 */}
                 </Route>
             </Routes>
         </Router>
