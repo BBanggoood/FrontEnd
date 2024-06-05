@@ -5,6 +5,10 @@ on:
     branches:
       - feature45
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
