@@ -3,11 +3,7 @@ name: Build and Push Docker Image to ECR
 on:
   push:
     branches:
-      - feature45
-
-permissions:
-  id-token: write
-  contents: read
+      - main
 
 jobs:
   build_and_push:
@@ -24,9 +20,11 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: ./bbanggood
 
       - name: Build project
-        run: npm run build
+        run: CI=false npm run build
+        working-directory: ./bbanggood
 
       - name: Build Docker image
         run: docker build -t bbanggoodapp ./bbanggood
