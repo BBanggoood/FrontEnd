@@ -3,7 +3,7 @@ name: Build and Push Docker Image to ECR
 on:
   push:
     branches:
-      - main
+      - feature45
 
 jobs:
   build_and_push:
@@ -20,12 +20,14 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: ./bbanggood
 
       - name: Build project
         run: npm run build
+        working-directory: ./bbanggood
 
       - name: Build Docker image
-        run: docker build -t bbanggoodapp .
+        run: docker build -t bbanggoodapp ./bbanggood
 
       - name: Configure AWS credentials using OIDC
         uses: aws-actions/configure-aws-credentials@v2
@@ -37,11 +39,11 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Build, tag, and push Docker image to ECR
+      - name: Tag and push Docker image to ECR
         env:
           ECR_REGISTRY: 767397880837.dkr.ecr.ap-northeast-2.amazonaws.com
           ECR_REPOSITORY: bbanggoodfront
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./BBanggoodFront
+          docker tag bbanggoodapp:latest $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
