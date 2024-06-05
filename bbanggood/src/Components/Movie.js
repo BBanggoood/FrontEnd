@@ -1,31 +1,101 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../CSS/Movie.css';
 
 const Movie = () => {
+    const initialContents = [
+        "Content 1", "Content 2", "Content 3", "Content 4", "Content 5",
+        "Content 6", "Content 7", "Content 8", "Content 9", "Content 10"
+    ];
+
+    const [recommendation1Contents, setRecommendation1Contents] = useState(initialContents.slice(0, 5));
+    const [recommendation1Page, setRecommendation1Page] = useState(1);
+
+    const handleNextRecommendation1 = () => {
+        if (recommendation1Page === 1) {
+            setRecommendation1Contents(initialContents.slice(5, 10));
+            setRecommendation1Page(2);
+        }
+    };
+
+    const handlePrevRecommendation1 = () => {
+        if (recommendation1Page === 2) {
+            setRecommendation1Contents(initialContents.slice(0, 5));
+            setRecommendation1Page(1);
+        }
+    };
+
+    const [recommendation2Contents, setRecommendation2Contents] = useState(initialContents.slice(0, 5));
+    const [recommendation2Page, setRecommendation2Page] = useState(1);
+
+    const handleNextRecommendation2 = () => {
+        if (recommendation2Page === 1) {
+            setRecommendation2Contents(initialContents.slice(5, 10));
+            setRecommendation2Page(2);
+        }
+    };
+
+    const handlePrevRecommendation2 = () => {
+        if (recommendation2Page === 2) {
+            setRecommendation2Contents(initialContents.slice(0, 5));
+            setRecommendation2Page(1);
+        }
+    };
+
     return (
         <div className="movie-page">
             <div className="movie-page-container">
                 <h1 className="movie-page-title">영화</h1>
-                <h2 className="movie-page-subtitle">주원님을 위한 추천</h2>
-                <div className="movie-page-content">
-                    <div className="movie-page-box-container">
-                        <div className="movie-page-box brown">
-                            <div className="movie-page-box white"></div>
+                <div className="movie-page-content-section">
+                    <h2>추천 1</h2>
+                    <div className="content-container">
+                        <div className="content-arrow-container left">
+                            {recommendation1Page === 2 && (
+                                <div className="content-arrow" onClick={handlePrevRecommendation1}>
+                                    ◀
+                                </div>
+                            )}
                         </div>
-                        <div className="movie-page-box brown">
-                            <div className="movie-page-box white"></div>
+                        {recommendation1Contents.map((content, index) => (
+                            <div key={index} className="content-box">
+                                {content}
+                            </div>
+                        ))}
+                        <div className="content-arrow-container right">
+                            {recommendation1Page === 1 && (
+                                <div className="content-arrow" onClick={handleNextRecommendation1}>
+                                    ▶
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
-                <h2 className="movie-page-subtitle">다른 사람들은 이런 걸 좋아해요</h2>
-                <div className="movie-page-row">
-                    <div className="movie-page-box"></div>
-                    <div className="movie-page-box"></div>
-                    <div className="movie-page-box"></div>
+                <div className="movie-page-content-section">
+                    <h2>추천 2</h2>
+                    <div className="content-container">
+                        <div className="content-arrow-container left">
+                            {recommendation2Page === 2 && (
+                                <div className="content-arrow" onClick={handlePrevRecommendation2}>
+                                    ◀
+                                </div>
+                            )}
+                        </div>
+                        {recommendation2Contents.map((content, index) => (
+                            <div key={index} className="content-box">
+                                {content}
+                            </div>
+                        ))}
+                        <div className="content-arrow-container right">
+                            {recommendation2Page === 1 && (
+                                <div className="content-arrow" onClick={handleNextRecommendation2}>
+                                    ▶
+                                </div>
+                            )}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     );
-}
+};
 
 export default Movie;

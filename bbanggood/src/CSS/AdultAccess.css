@@ -1,9 +1,9 @@
-.anime-page {
+.adult-access-page {
     padding: 20px;
     background-color: #FFF6F1;
 }
 
-.anime-page-container {
+.adult-access-page-container {
     width: 1082px;
     background: #FFE3B0;
     border-radius: 40px;
@@ -13,18 +13,18 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.anime-page-title {
+.adult-access-page-title {
     font-family: 'Inter', sans-serif;
     font-size: 48px;
     color: #000;
     margin-bottom: 40px;
 }
 
-.anime-page-content-section {
+.adult-access-page-content-section {
     margin-bottom: 20px;
 }
 
-.anime-page-content-section h2 {
+.adult-access-page-content-section h2 {
     font-family: 'Inter', sans-serif;
     font-size: 36px;
     color: #000;
