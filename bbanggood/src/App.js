@@ -22,6 +22,7 @@ import AdultVerificationPage from './Components/AdultVerificationPage';
 import AdultVerificationPinPage from './Components/AdultVerificationPinPage'; // 성인 인증 PIN 페이지 import
 import SchedulePage from './Components/SchedulePage'; // 일정 페이지 import
 import PersonalInfoEdit from './Components/PersonalInfoEdit'; // 개인정보 수정 페이지 import
+import VodDetailPage from './Components/VodDetailPage'; // VOD 상세 페이지 import
 import './App.css';
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
                     <Route path="/schedule" element={<SchedulePage />} /> {/* 일정 페이지 경로 추가 */}
                     <Route path="/adult-verification-pin" element={<AdultVerificationPinPage />} /> {/* 성인 인증 PIN 페이지 경로 추가 */}
                     <Route path="/personal-info-edit" element={<PersonalInfoEdit />} /> {/* 개인정보 수정 페이지 경로 추가 */}
+                    <Route path="/vod-detail" element={<VodDetailPage />} /> {/* VOD 상세 페이지 경로 추가 */}
                 </Route>
             </Routes>
         </Router>
