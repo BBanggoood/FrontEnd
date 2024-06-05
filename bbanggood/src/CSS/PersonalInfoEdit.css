@@ -1,0 +1,91 @@
+.personal-info-edit-page {
+    max-height: 600px;
+    padding: 20px;
+    background-color: #FFF6F1;
+    height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.personal-info-edit-container {
+    width: 1082px;
+    height: 500px;
+    background: #B89079;
+    border-radius: 40px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.personal-info-edit-container h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 32px;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+    text-align: left; /* 왼쪽 정렬 */
+    width: 100%; /* 너비 전체로 확장 */
+    position: relative;
+    top: -20px; /* 위로 이동 */
+}
+
+.personal-info-form {
+    display: flex;
+    flex-direction: column;
+    background: #FFE5B6;
+    border-radius: 20px;
+    padding: 20px;
+    width: 60%; /* 폼 너비를 컨테이너에 맞춤 */
+    align-items: center; /* 가운데 정렬 */
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* 폼 그룹 너비를 폼에 맞춤 */
+}
+
+.form-group label {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    color: #000;
+    margin-right: 10px;
+    flex: 1;
+}
+
+.form-group input,
+.form-group select {
+    width: 70%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 100%; /* 버튼 컨테이너 너비를 폼에 맞춤 */
+}
+
+.form-buttons button {
+    width: 48%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #B89079;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.form-buttons button:hover {
+    background-color: #A67C65;
+}

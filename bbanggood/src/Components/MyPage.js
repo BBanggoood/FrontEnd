@@ -10,13 +10,17 @@ const MyPage = () => {
         navigate('/adult-verification');
     };
 
+    const handleEditInfo = () => {
+        navigate('/personal-info-edit');
+    };
+
     return (
         <div className="my-page">
             <div className="my-page-container">
                 <div className="my-page-welcome">
                     <div className="welcome-text">
                         <h3>HELLO, BBANGGOOD !</h3>
-                        <button className="edit-button">개인 정보 수정</button>
+                        <button className="edit-button" onClick={handleEditInfo}>개인 정보 수정</button>
                     </div>
                     <img src={profileImage} alt="Profile" className="welcome-img" />
                 </div>
