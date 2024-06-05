@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import '../CSS/TVShow.css';
+import '../CSS/AdultAccess.css';
 
-const TVShow = () => {
+const AdultAccess = () => {
     const initialContents = [
         "Content 1", "Content 2", "Content 3", "Content 4", "Content 5",
         "Content 6", "Content 7", "Content 8", "Content 9", "Content 10"
@@ -42,10 +42,10 @@ const TVShow = () => {
     };
 
     return (
-        <div className="tvshow-page">
-            <div className="tvshow-page-container">
-                <h1 className="tvshow-page-title">TV/예능</h1>
-                <div className="tvshow-page-content-section">
+        <div className="adult-access-page">
+            <div className="adult-access-page-container">
+                <h1 className="adult-access-page-title">성인</h1>
+                <div className="adult-access-page-content-section">
                     <h2>추천 1</h2>
                     <div className="content-container">
                         <div className="content-arrow-container left">
@@ -69,7 +69,7 @@ const TVShow = () => {
                         </div>
                     </div>
                 </div>
-                <div className="tvshow-page-content-section">
+                <div className="adult-access-page-content-section">
                     <h2>추천 2</h2>
                     <div className="content-container">
                         <div className="content-arrow-container left">
@@ -98,4 +98,4 @@ const TVShow = () => {
     );
 };
 
-export default TVShow;
+export default AdultAccess;
