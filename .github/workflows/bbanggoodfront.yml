@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - feature45
+      - 'bbanggood/**'
+
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   build_and_push:
