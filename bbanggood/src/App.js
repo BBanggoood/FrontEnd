@@ -26,6 +26,7 @@ import VodDetailPage from './Components/VodDetailPage'; // VOD 상세 페이지 
 import DirectorDetailPage from './Components/DirectorDetailPage'; // 감독 상세 페이지 import
 import ActorDetailPage from './Components/ActorDetailPage'; // 출연진 상세 페이지 import
 import AdultAccess from './Components/AdultAccess';
+import SearchPage from './Components/SearchPage';
 import './App.css';
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
                     <Route path="/director-detail" element={<DirectorDetailPage />} /> {/* 감독 상세 페이지 경로 추가 */}
                     <Route path="/actor-detail" element={<ActorDetailPage />} /> {/* 출연진 상세 페이지 경로 추가 */}
                     <Route path="/adult-access" element={<AdultAccess />} /> {/* 성인 접근 페이지 경로 추가 */}
+                    <Route path="/search" element={<SearchPage />} />
                 </Route>
             </Routes>
         </Router>
@@ -65,3 +67,5 @@ function App() {
 }
 
 export default App;
+
+

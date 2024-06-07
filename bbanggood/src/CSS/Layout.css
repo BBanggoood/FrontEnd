@@ -24,22 +24,35 @@
     width: 230px;
     height: 140px;
     margin-bottom: 20px;
-    cursor: pointer; /* 로고에 커서가 올려졌을 때 포인터로 변경 */
+    cursor: pointer; /* 로고 클릭 가능하게 설정 */
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .layout-search {
     width: 140px;
     padding: 8px 0;
-    margin-bottom: 20px;
     border: none;
     border-bottom: 2px solid #644A41;
     text-align: left;
     font-family: 'Inter', sans-serif;
     font-size: 16px;
-    background: url('../images/search-icon.png') no-repeat left center;
+    background: none;
+    padding-left: 10px;
+    padding-right: 30px; /* 아이콘 공간 확보를 위해 오른쪽 패딩 증가 */
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    background: url('../images/search-icon.png') no-repeat center center;
     background-size: 20px;
-    padding-left: 30px;
-    padding-right: 10px;
+    cursor: pointer;
+    margin-left: -30px; /* 아이콘을 검색 입력창 내부에 겹치게 배치 */
 }
 
 .layout-menu {
