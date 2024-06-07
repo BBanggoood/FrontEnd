@@ -24,10 +24,11 @@
     width: 230px;
     height: 140px;
     margin-bottom: 20px;
+    cursor: pointer; /* 로고에 커서가 올려졌을 때 포인터로 변경 */
 }
 
 .layout-search {
-    width: 160px;
+    width: 140px;
     padding: 8px 0;
     margin-bottom: 20px;
     border: none;
@@ -38,6 +39,7 @@
     background: url('../images/search-icon.png') no-repeat left center;
     background-size: 20px;
     padding-left: 30px;
+    padding-right: 10px;
 }
 
 .layout-menu {
