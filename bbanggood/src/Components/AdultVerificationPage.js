@@ -7,7 +7,17 @@ const AdultVerificationPage = () => {
     const navigate = useNavigate();
 
     const handleBoxClick = () => {
-        navigate('/adult-verification-pin');
+        // 여기에서 실제 성인 인증 로직을 추가하세요.
+        // 인증이 완료되면 로컬 스토리지에 상태를 저장합니다.
+        const isSuccess = true; // 실제 인증 로직에 따라 성공 여부를 설정하세요.
+
+        if (isSuccess) {
+            localStorage.setItem('isAdultVerified', 'true');
+            alert("성인 인증이 완료되었습니다.");
+            navigate('/adult-verification-pin');
+        } else {
+            alert("성인 인증이 실패했습니다.");
+        }
     };
 
     return (
