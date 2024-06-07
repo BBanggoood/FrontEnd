@@ -4,7 +4,7 @@ import 'react-calendar/dist/Calendar.css';
 import '../CSS/SchedulePage.css';
 
 const SchedulePage = () => {
-  const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [currentMonth] = useState(new Date());
   const [movieInfo, setMovieInfo] = useState(null);
 
   const handleDateChange = (date) => {

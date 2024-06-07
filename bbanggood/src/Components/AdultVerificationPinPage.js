@@ -8,7 +8,7 @@ const AdultVerificationPinPage = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // 여기에 PIN 번호 유효성 검사 로직을 추가할 수 있습니다.
+        alert("PIN 번호 설정이 완료되었습니다.");
         navigate('/mypage'); // 설정 완료 후 마이페이지로 이동
     };
 
