@@ -7,7 +7,9 @@ const Layout = () => {
     return (
         <div className="layout">
             <div className="layout-sidebar">
-                <img src={logo} alt="Logo" className="layout-logo" />
+                <Link to="/mainpage">
+                    <img src={logo} alt="Logo" className="layout-logo" />
+                </Link>
                 <input type="text" placeholder="검색" className="layout-search" />
                 <div className="layout-menu">
                     <Link to="/kids">키즈</Link>
