@@ -1,49 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import '../CSS/BreadListPage.css';
+import axios from 'axios';
 
 const BreadListPage = () => {
-    const initialVOD = [
-        { title: "VOD 1", poster: "https://via.placeholder.com/108x176" },
-        { title: "VOD 2", poster: "https://via.placeholder.com/108x176" },
-        { title: "VOD 3", poster: "https://via.placeholder.com/108x176" },
-        { title: "VOD 4", poster: "https://via.placeholder.com/108x176" },
-        { title: "VOD 5", poster: "https://via.placeholder.com/108x176" },
-        { title: "VOD 6", poster: "https://via.placeholder.com/108x176" },
-        { title: "VOD 7", poster: "https://via.placeholder.com/108x176" },
-        { title: "VOD 8", poster: "https://via.placeholder.com/108x176" },
-        { title: "VOD 9", poster: "https://via.placeholder.com/108x176" },
-        { title: "VOD 10", poster: "https://via.placeholder.com/108x176" }
-    ];
-
-    const initialDirectors = [
-        { title: "Director 1", poster: "https://via.placeholder.com/108x176" },
-        { title: "Director 2", poster: "https://via.placeholder.com/108x176" },
-        { title: "Director 3", poster: "https://via.placeholder.com/108x176" },
-        { title: "Director 4", poster: "https://via.placeholder.com/108x176" },
-        { title: "Director 5", poster: "https://via.placeholder.com/108x176" },
-        { title: "Director 6", poster: "https://via.placeholder.com/108x176" },
-        { title: "Director 7", poster: "https://via.placeholder.com/108x176" },
-        { title: "Director 8", poster: "https://via.placeholder.com/108x176" },
-        { title: "Director 9", poster: "https://via.placeholder.com/108x176" },
-        { title: "Director 10", poster: "https://via.placeholder.com/108x176" }
-    ];
-
-    const initialActors = [
-        { title: "Actor 1", poster: "https://via.placeholder.com/108x176" },
-        { title: "Actor 2", poster: "https://via.placeholder.com/108x176" },
-        { title: "Actor 3", poster: "https://via.placeholder.com/108x176" },
-        { title: "Actor 4", poster: "https://via.placeholder.com/108x176" },
-        { title: "Actor 5", poster: "https://via.placeholder.com/108x176" },
-        { title: "Actor 6", poster: "https://via.placeholder.com/108x176" },
-        { title: "Actor 7", poster: "https://via.placeholder.com/108x176" },
-        { title: "Actor 8", poster: "https://via.placeholder.com/108x176" },
-        { title: "Actor 9", poster: "https://via.placeholder.com/108x176" },
-        { title: "Actor 10", poster: "https://via.placeholder.com/108x176" }
-    ];
+    const [vodList, setVodList] = useState([]);
+    const [directorsList, setDirectorsList] = useState([]);
+    const [actorsList, setActorsList] = useState([]);
 
     const [currentVODIndex, setCurrentVODIndex] = useState(0);
     const [currentDirectorsIndex, setCurrentDirectorsIndex] = useState(0);
     const [currentActorsIndex, setCurrentActorsIndex] = useState(0);
+
+    useEffect(() => {
+        const setbxId = localStorage.getItem('username');
+        
+        if (!setbxId) {
+            console.error('setbxId not found in local storage');
+            return;
+        }
+
+        const fetchVOD = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/bbang/vod/${setbxId}`);
+                setVodList(response.data);
+            } catch (error) {
+                console.error('Error fetching VOD data:', error);
+            }
+        };
+
+        const fetchDirectors = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/bbang/director/${setbxId}`);
+                setDirectorsList(response.data);
+            } catch (error) {
+                console.error('Error fetching directors data:', error);
+            }
+        };
+
+        const fetchActors = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/bbang/cast/${setbxId}`);
+                setActorsList(response.data);
+            } catch (error) {
+                console.error('Error fetching actors data:', error);
+            }
+        };
+
+        fetchVOD();
+        fetchDirectors();
+        fetchActors();
+    }, []);
 
     const handleNext = (setCurrentIndex, currentIndex, list) => {
         setCurrentIndex((currentIndex + 1) % list.length);
@@ -69,17 +76,17 @@ const BreadListPage = () => {
                 <div className="bread-list-section">
                     <h2>VOD</h2>
                     <div className="bread-content-container">
-                        <div className="content-arrow-container left" onClick={() => handlePrev(setCurrentVODIndex, currentVODIndex, initialVOD)}>
+                        <div className="content-arrow-container left" onClick={() => handlePrev(setCurrentVODIndex, currentVODIndex, vodList)}>
                             ◀
                         </div>
                         <div className="bread-content-box-container">
-                            {initialVOD.map((vod, index) => (
-                                <div key={index} className={getBoxClassName(index, currentVODIndex, initialVOD)}>
-                                    <img src={vod.poster} alt={vod.title} />
-                                </div>
+                            {vodList.map((vod, index) => (
+                                <Link to={`/detail/vod/${vod.vodId}`} key={index} className={getBoxClassName(index, currentVODIndex, vodList)}>
+                                    <img src={vod.vodPoster} alt={vod.title} onError={(e) => console.error(`Error loading image: ${vod.vodPoster}`, e)} />
+                                </Link>
                             ))}
                         </div>
-                        <div className="content-arrow-container right" onClick={() => handleNext(setCurrentVODIndex, currentVODIndex, initialVOD)}>
+                        <div className="content-arrow-container right" onClick={() => handleNext(setCurrentVODIndex, currentVODIndex, vodList)}>
                             ▶
                         </div>
                     </div>
@@ -87,17 +94,17 @@ const BreadListPage = () => {
                 <div className="bread-list-section">
                     <h2>감독</h2>
                     <div className="bread-content-container">
-                        <div className="content-arrow-container left" onClick={() => handlePrev(setCurrentDirectorsIndex, currentDirectorsIndex, initialDirectors)}>
+                        <div className="content-arrow-container left" onClick={() => handlePrev(setCurrentDirectorsIndex, currentDirectorsIndex, directorsList)}>
                             ◀
                         </div>
                         <div className="bread-content-box-container">
-                            {initialDirectors.map((director, index) => (
-                                <div key={index} className={getBoxClassName(index, currentDirectorsIndex, initialDirectors)}>
-                                    <img src={director.poster} alt={director.title} />
-                                </div>
+                            {directorsList.map((director, index) => (
+                                <Link to={`/detail/director/${director.vodDirector}`} key={index} className={getBoxClassName(index, currentDirectorsIndex, directorsList)}>
+                                    <img src={director.vodDirectorPoster} alt={director.vodDirector} onError={(e) => console.error(`Error loading image: ${director.vodDirectorPoster}`, e)} />
+                                </Link>
                             ))}
                         </div>
-                        <div className="content-arrow-container right" onClick={() => handleNext(setCurrentDirectorsIndex, currentDirectorsIndex, initialDirectors)}>
+                        <div className="content-arrow-container right" onClick={() => handleNext(setCurrentDirectorsIndex, currentDirectorsIndex, directorsList)}>
                             ▶
                         </div>
                     </div>
@@ -105,17 +112,17 @@ const BreadListPage = () => {
                 <div className="bread-list-section">
                     <h2>출연진</h2>
                     <div className="bread-content-container">
-                        <div className="content-arrow-container left" onClick={() => handlePrev(setCurrentActorsIndex, currentActorsIndex, initialActors)}>
+                        <div className="content-arrow-container left" onClick={() => handlePrev(setCurrentActorsIndex, currentActorsIndex, actorsList)}>
                             ◀
                         </div>
                         <div className="bread-content-box-container">
-                            {initialActors.map((actor, index) => (
-                                <div key={index} className={getBoxClassName(index, currentActorsIndex, initialActors)}>
-                                    <img src={actor.poster} alt={actor.title} />
-                                </div>
+                            {actorsList.map((actor, index) => (
+                                <Link to={`/detail/cast/${actor.vodCast}`} key={index} className={getBoxClassName(index, currentActorsIndex, actorsList)}>
+                                    <img src={actor.vodCastPoster} alt={actor.vodCast} onError={(e) => console.error(`Error loading image: ${actor.vodCastPoster}`, e)} />
+                                </Link>
                             ))}
                         </div>
-                        <div className="content-arrow-container right" onClick={() => handleNext(setCurrentActorsIndex, currentActorsIndex, initialActors)}>
+                        <div className="content-arrow-container right" onClick={() => handleNext(setCurrentActorsIndex, currentActorsIndex, actorsList)}>
                             ▶
                         </div>
                     </div>
