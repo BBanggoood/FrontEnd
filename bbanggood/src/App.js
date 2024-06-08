@@ -56,8 +56,8 @@ function App() {
                     <Route path="/adult-verification-pin" element={<AdultVerificationPinPage />} /> {/* 성인 인증 PIN 페이지 경로 추가 */}
                     <Route path="/personal-info-edit" element={<PersonalInfoEdit />} /> {/* 개인정보 수정 페이지 경로 추가 */}
                     <Route path="/vod-detail/:vodId" element={<VodDetailPage />} /> {/* VOD 상세 페이지 경로 추가 */}
-                    <Route path="/director-detail" element={<DirectorDetailPage />} /> {/* 감독 상세 페이지 경로 추가 */}
-                    <Route path="/actor-detail" element={<ActorDetailPage />} /> {/* 출연진 상세 페이지 경로 추가 */}
+                    <Route path="/director-detail/:name" element={<DirectorDetailPage />} /> {/* 감독 상세 페이지 경로 추가 */}
+                    <Route path="/actor-detail/:name" element={<ActorDetailPage />} /> {/* 출연진 상세 페이지 경로 추가 */}
                     <Route path="/adult-access" element={<AdultAccess />} /> {/* 성인 접근 페이지 경로 추가 */}
                     <Route path="/search" element={<SearchPage />} />
                 </Route>
@@ -67,5 +67,3 @@ function App() {
 }
 
 export default App;
-
-

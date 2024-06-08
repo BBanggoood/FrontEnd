@@ -56,12 +56,12 @@ const VodDetailPage = () => {
         }
     };
 
-    const handleDirectorClick = () => {
-        navigate('/director-detail');
+    const handleDirectorClick = (directorName) => {
+        navigate(`/director-detail/${encodeURIComponent(directorName)}`);
     };
 
-    const handleCastClick = (name) => {
-        navigate(`/actor-detail`);
+    const handleCastClick = (actorName) => {
+        navigate(`/actor-detail/${encodeURIComponent(actorName)}`);
     };
 
     if (!vodData) {
@@ -96,13 +96,39 @@ const VodDetailPage = () => {
                         </h2>
                         <div className="vod-director">
                             [감독]
-                            <span className="clickable" onClick={handleDirectorClick}>{vodData.vodDirector}</span>
+                            {vodData.vodDirector.split(',').reduce((acc, director, index) => {
+                                if (index === 0) {
+                                    return [
+                                        <span key={index} className="clickable" onClick={() => handleDirectorClick(director.trim())}>
+                                            {director.trim()}
+                                        </span>
+                                    ];
+                                }
+                                return acc.concat(
+                                    ' ',
+                                    <span key={index} className="clickable" onClick={() => handleDirectorClick(director.trim())}>
+                                        {director.trim()}
+                                    </span>
+                                );
+                            }, [])}
                         </div>
                         <div className="vod-cast">
                             [출연진] 
-                            {vodData.vodCast.split(',').map((cast, index) => (
-                                <span key={index} className="clickable" onClick={() => handleCastClick(cast.trim())}> {cast.trim()}</span>
-                            ))}
+                            {vodData.vodCast.split(',').reduce((acc, cast, index) => {
+                                if (index === 0) {
+                                    return [
+                                        <span key={index} className="clickable" onClick={() => handleCastClick(cast.trim())}>
+                                            {cast.trim()}
+                                        </span>
+                                    ];
+                                }
+                                return acc.concat(
+                                    ' ',
+                                    <span key={index} className="clickable" onClick={() => handleCastClick(cast.trim())}>
+                                        {cast.trim()}
+                                    </span>
+                                );
+                            }, [])}
                         </div>
                         <div className="vod-summary">[줄거리] {vodData.vodSummary}</div>
                     </div>
