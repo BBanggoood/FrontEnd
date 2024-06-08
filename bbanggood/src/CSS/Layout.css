@@ -46,7 +46,7 @@
     padding-right: 40px; /* 오른쪽 여백 추가 */
 }
 
-.search-icon {
+.layout-search-icon {
     width: 20px;
     height: 20px;
     background: url('../images/search-icon.png') no-repeat center center;

@@ -41,7 +41,7 @@ const Layout = () => {
                         onChange={handleSearchInputChange}
                         onKeyPress={handleKeyPress}
                     />
-                    <div className="search-icon" onClick={handleSearch}></div>
+                    <div className="layout-search-icon" onClick={handleSearch}></div>
                 </div>
                 <div className="layout-menu">
                     <Link to="/kids" className={getLinkClass('/kids')}>키즈</Link>

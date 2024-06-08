@@ -39,6 +39,7 @@ function App() {
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="/genre-selection" element={<GenreSelectionPage />} />
                 <Route path="/contents-selection" element={<ContentsSelectionPage />} />
+                <Route path="/search" element={<SearchPage />} />
                 <Route element={<Layout />}>
                     <Route path="/mainpage" element={<MainPage />} />
                     <Route path="/bread-list" element={<BreadListPage />} />
@@ -59,7 +60,6 @@ function App() {
                     <Route path="/director-detail/:name" element={<DirectorDetailPage />} /> {/* 감독 상세 페이지 경로 추가 */}
                     <Route path="/actor-detail/:name" element={<ActorDetailPage />} /> {/* 출연진 상세 페이지 경로 추가 */}
                     <Route path="/adult-access" element={<AdultAccess />} /> {/* 성인 접근 페이지 경로 추가 */}
-                    <Route path="/search" element={<SearchPage />} />
                 </Route>
             </Routes>
         </Router>
