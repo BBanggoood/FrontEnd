@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../CSS/Kids.css';
 
 const Kids = () => {
@@ -38,6 +39,40 @@ const Kids = () => {
         if (recommendation2Page === 2) {
             setRecommendation2Contents(initialContents.slice(0, 5));
             setRecommendation2Page(1);
+        }
+    };
+
+    const [popularContents, setPopularContents] = useState([]);
+    const [popularPage, setPopularPage] = useState(1);
+
+    useEffect(() => {
+        fetch('http://localhost:8080/contents/kids/top')
+            .then(response => response.json())
+            .then(data => {
+                console.log('Fetched data:', data);
+                setPopularContents(data);
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }, []);
+
+    const navigate = useNavigate();
+
+    const handleImageClick = (vodId) => {
+        console.log('Clicked vodID:', vodId);
+        navigate(`/vod-detail/${vodId}`);
+    };
+
+    const handleNextPopular = () => {
+        if (popularPage === 1) {
+            setPopularContents(prevContents => prevContents.slice(5, 10));
+            setPopularPage(2);
+        }
+    };
+
+    const handlePrevPopular = () => {
+        if (popularPage === 2) {
+            setPopularContents(prevContents => prevContents.slice(0, 5));
+            setPopularPage(1);
         }
     };
 
@@ -87,6 +122,30 @@ const Kids = () => {
                         <div className="content-arrow-container right">
                             {recommendation2Page === 1 && (
                                 <div className="content-arrow" onClick={handleNextRecommendation2}>
+                                    ▶
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+                <div className="kids-page-content-section">
+                    <h2>지금 인기있는 컨텐츠</h2>
+                    <div className="content-container">
+                        <div className="content-arrow-container left">
+                            {popularPage === 2 && (
+                                <div className="content-arrow" onClick={handlePrevPopular}>
+                                    ◀
+                                </div>
+                            )}
+                        </div>
+                        {popularContents.slice(0, 5).map((content, index) => (
+                            <div key={index} className="content-box" onClick={() => handleImageClick(content.vodId)}>
+                                <img src={content.vodPoster} alt={`Content ${index + 1}`} className="content-image" />
+                            </div>
+                        ))}
+                        <div className="content-arrow-container right">
+                            {popularPage === 1 && (
+                                <div className="content-arrow" onClick={handleNextPopular}>
                                     ▶
                                 </div>
                             )}
