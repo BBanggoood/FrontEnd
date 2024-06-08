@@ -1,115 +1,90 @@
 .director-detail-page {
-    max-height: 800px;
     padding: 20px;
     background-color: #FFF6F1;
-    height: calc(100vh - 80px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .director-detail-container {
     width: 1082px;
-    height: 570px;
-    background: #FFE5B6;
+    background: #FFE3B0;
     border-radius: 40px;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
+    padding: 20px;
+    margin: 20px auto;
+    opacity: 0.9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .director-header {
     display: flex;
-    align-items: baseline;
-    margin-bottom: 0px;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .director-name {
     font-family: 'Inter', sans-serif;
-    font-weight: 400;
     font-size: 36px;
-    color: #000;
-    margin-right: 10px;
-}
-
-.director-title {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
     color: #000;
 }
 
 .sort-option {
     display: flex;
     align-items: center;
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    color: #000;
-    margin-bottom: 20px;
     cursor: pointer;
     position: relative;
 }
 
 .chevron-icon {
-    margin-left: 5px;
+    margin-left: 10px;
 }
 
 .dropdown-menu {
     position: absolute;
-    top: 30px;
+    top: 100%;
     left: 0;
-    background: #FFF;
+    background-color: #fff;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    z-index: 1000; /* z-index를 높게 설정 */
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
 }
 
 .dropdown-item {
     padding: 10px;
     cursor: pointer;
-    font-size: 14px;
-    font-family: 'Inter', sans-serif;
 }
 
 .dropdown-item:hover {
-    background: #eee;
+    background-color: #f0f0f0;
 }
 
 .vod-list {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5개의 아이템을 한 줄에 배치 */
-    grid-gap: 20px; /* 아이템 사이의 간격 */
-    width: 100%;
-    margin-top: 10px; /* 드롭다운 메뉴와 vod-item 사이의 간격 추가 */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
 }
 
 .vod-item {
-    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 190px;
     background: #FFF;
-    border-radius: 40px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
     position: relative;
 }
 
-.vod-item::after {
-    content: '';
-    display: block;
+.vod-poster {
     width: 100%;
-    height: 50px;
-    background: #541704;
-    border-radius: 0 0 40px 40px;
-    position: absolute;
-    bottom: 0;
+    height: 240px;
+    object-fit: cover;
 }
 
-.circle-icon {
-    position: absolute;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #FFF;
-    font-size: 24px;
-    z-index: 1;
+.vod-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #000;
+    padding: 10px;
+    text-align: center;
 }
