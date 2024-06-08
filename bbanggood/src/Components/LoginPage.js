@@ -1,16 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../CSS/LoginPage.css';
 import logo from '../images/pngegg.png'; // 버튼 아이콘 이미지
 
 const LoginPage = () => {
     const navigate = useNavigate();
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
-    const handleLogin = () => {
-        // 로그인 처리 로직을 여기에 추가할 수 있습니다.
-        // 로그인 성공 시 메인 페이지로 이동
-        navigate('/mainpage');
-    }
+    const handleLogin = async () => {
+        try {
+            const response = await axios.post('http://localhost:8080/login', {
+                username,
+                password
+            }, {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: [(data) => {
+                    return Object.keys(data)
+                        .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+                        .join('&');
+                }]
+            });
+
+            // 로그인 성공 시 로컬 스토리지에 username 저장 및 메인 페이지로 이동
+            if (response.status === 200) {
+                localStorage.setItem('username', username);
+                navigate('/mainpage');
+            } else {
+                alert('로그인에 실패했습니다. 다시 시도해주세요.');
+            }
+        } catch (error) {
+            console.error('로그인 중 오류가 발생했습니다.', error);
+            alert('로그인 중 오류가 발생했습니다. 다시 시도해주세요.');
+        }
+    };
 
     return (
         <div className="login-screen">
@@ -18,11 +44,23 @@ const LoginPage = () => {
                 <div className="inner-rectangle">
                     <div className="input-group">
                         <label htmlFor="username">셋톱박스 아이디 입력:</label>
-                        <input type="text" id="username" className="input-field" />
+                        <input 
+                            type="text" 
+                            id="username" 
+                            className="input-field" 
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
                     </div>
                     <div className="input-group">
                         <label htmlFor="password">비밀번호 입력:</label>
-                        <input type="password" id="password" className="input-field" />
+                        <input 
+                            type="password" 
+                            id="password" 
+                            className="input-field" 
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
                     </div>
                     <button className="login-button" onClick={handleLogin}>
                         <img src={logo} alt="login icon" className="login-icon" />
