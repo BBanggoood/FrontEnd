@@ -19,12 +19,12 @@ import TVShow from './Components/TVShow';
 import Anime from './Components/Anime';
 import AdultPage from './Components/AdultPage';
 import AdultVerificationPage from './Components/AdultVerificationPage';
-import AdultVerificationPinPage from './Components/AdultVerificationPinPage'; // 성인 인증 PIN 페이지 import
-import SchedulePage from './Components/SchedulePage'; // 일정 페이지 import
-import PersonalInfoEdit from './Components/PersonalInfoEdit'; // 개인정보 수정 페이지 import
-import VodDetailPage from './Components/VodDetailPage'; // VOD 상세 페이지 import
-import DirectorDetailPage from './Components/DirectorDetailPage'; // 감독 상세 페이지 import
-import ActorDetailPage from './Components/ActorDetailPage'; // 출연진 상세 페이지 import
+import SchedulePage from './Components/SchedulePage';
+import PersonalInfoEdit from './Components/PersonalInfoEdit';
+import VodDetailPage from './Components/VodDetailPage';
+import DirectorDetailPage from './Components/DirectorDetailPage';
+import ActorDetailPage from './Components/ActorDetailPage';
+import AdultVerificationPinPage from './Components/AdultVerificationPinPage';
 import AdultAccess from './Components/AdultAccess';
 import './App.css';
 
@@ -51,13 +51,13 @@ function App() {
                     <Route path="/anime" element={<Anime />} />
                     <Route path="/adult" element={<AdultPage />} />
                     <Route path="/adult-verification" element={<AdultVerificationPage />} />
-                    <Route path="/schedule" element={<SchedulePage />} /> {/* 일정 페이지 경로 추가 */}
-                    <Route path="/adult-verification-pin" element={<AdultVerificationPinPage />} /> {/* 성인 인증 PIN 페이지 경로 추가 */}
-                    <Route path="/personal-info-edit" element={<PersonalInfoEdit />} /> {/* 개인정보 수정 페이지 경로 추가 */}
-                    <Route path="/vod-detail" element={<VodDetailPage />} /> {/* VOD 상세 페이지 경로 추가 */}
-                    <Route path="/director-detail" element={<DirectorDetailPage />} /> {/* 감독 상세 페이지 경로 추가 */}
-                    <Route path="/actor-detail" element={<ActorDetailPage />} /> {/* 출연진 상세 페이지 경로 추가 */}
-                    <Route path="/adult-access" element={<AdultAccess />} /> {/* 성인 접근 페이지 경로 추가 */}
+                    <Route path="/schedule" element={<SchedulePage />} />
+                    <Route path="/adult-verification-pin" element={<AdultVerificationPinPage />} />
+                    <Route path="/personal-info-edit" element={<PersonalInfoEdit />} />
+                    <Route path="/vod-detail/:vodId" element={<VodDetailPage />} /> {/* VOD 상세 페이지 경로 수정 */}
+                    <Route path="/director-detail" element={<DirectorDetailPage />} />
+                    <Route path="/actor-detail" element={<ActorDetailPage />} />
+                    <Route path="/adult-access" element={<AdultAccess />} />
                 </Route>
             </Routes>
         </Router>

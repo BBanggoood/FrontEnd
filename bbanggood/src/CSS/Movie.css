@@ -53,6 +53,17 @@
     align-items: center;
     justify-content: center;
     font-family: 'Inter', sans-serif;
+    overflow: hidden; /* 박스 내부 넘침 숨기기 */
+    position: relative; /* 상대 위치 */
+}
+
+.content-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지 크기를 박스에 맞추기 */
+    position: absolute; /* 이미지가 박스 내부에 고정되도록 설정 */
+    top: 0; /* 상단에서 시작 */
+    left: 0; /* 왼쪽에서 시작 */
 }
 
 .content-arrow-container {
