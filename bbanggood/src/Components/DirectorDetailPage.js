@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 import '../CSS/DirectorDetailPage.css';
 import { FaChevronDown } from "react-icons/fa";
-// import { FaRegCircle } from "react-icons/fa"; // react-icon 원형 아이콘
 import { FaGun } from "react-icons/fa6";
 
 const DirectorDetailPage = () => {
@@ -29,17 +29,48 @@ const DirectorDetailPage = () => {
             .catch(error => console.error('Error fetching director VOD details:', error));
     }, [name]);
 
-    const handleAddToBreadList = () => {
+    const handleAddToBreadList = async () => {
+        const setbxId = localStorage.getItem('setbxId'); // localStorage에서 setbxId를 가져옴
+        if (!setbxId) {
+            alert('사용자 정보가 없습니다.');
+            return;
+        }
+
         if (!isAddedToBreadList) {
-            if (window.confirm(`[감독] ${name} 빵 목록에 추가되었습니다. 빵 목록으로 이동하시겠습니까?`)) {
-                setIsAddedToBreadList(true);
-                localStorage.setItem('directorAddedToBreadList', 'true');
-                navigate('/bread-list');
+            try {
+                const confirmation = window.confirm(`[감독] ${name} 빵 목록에 추가되었습니다. 빵 목록으로 이동하시겠습니까?`);
+                if (confirmation) {
+                    const response = await axios.post('http://localhost:8080/bbang/director', {
+                        setbxId: parseInt(setbxId, 10),
+                        vodDirector: name,
+                        vodDirectorPoster: vodData.length > 0 ? vodData[0].vodPoster : ''
+                    });
+                    console.log('Director added to BreadList:', response.data);
+                    setIsAddedToBreadList(true);
+                    localStorage.setItem('directorAddedToBreadList', 'true');
+                    navigate('/bread-list');
+                }
+            } catch (error) {
+                console.error('Error adding director to BreadList:', error);
+                alert('빵 목록에 추가하는 중 오류가 발생했습니다.');
             }
         } else {
-            if (window.confirm(`[감독] ${name} 빵 목록에서 제거되었습니다.`)) {
-                setIsAddedToBreadList(false);
-                localStorage.setItem('directorAddedToBreadList', 'false');
+            try {
+                const confirmation = window.confirm(`[감독] ${name} 빵 목록에서 제거되었습니다.`);
+                if (confirmation) {
+                    const response = await axios.delete('http://localhost:8080/bbang/director', {
+                        data: {
+                            setbxId: parseInt(setbxId, 10),
+                            vodDirector: name
+                        }
+                    });
+                    console.log('Director removed from BreadList:', response.data);
+                    setIsAddedToBreadList(false);
+                    localStorage.setItem('directorAddedToBreadList', 'false');
+                }
+            } catch (error) {
+                console.error('Error removing director from BreadList:', error);
+                alert('빵 목록에서 제거하는 중 오류가 발생했습니다.');
             }
         }
     };
