@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 import '../CSS/VodDetailPage.css';
 import { FaPlayCircle } from "react-icons/fa";
 import { FaGun } from "react-icons/fa6";
@@ -41,17 +42,48 @@ const VodDetailPage = () => {
         // 여기에 VOD 영상을 재생하는 로직을 추가하세요.
     };
 
-    const handleAddToBreadList = () => {
+    const handleAddToBreadList = async () => {
+        const setbxId = localStorage.getItem('setbxId'); // localStorage에서 setbxId를 가져옴
+        if (!setbxId) {
+            alert('사용자 정보가 없습니다.');
+            return;
+        }
+
         if (!isAddedToBreadList) {
-            if (window.confirm('[VOD] 빵 목록에 추가되었습니다. 빵 목록으로 이동하시겠습니까?')) {
-                setIsAddedToBreadList(true);
-                localStorage.setItem('isAddedToBreadList', 'true'); // 로컬 스토리지에 찜 상태 저장
-                navigate('/bread-list');
+            try {
+                const confirmation = window.confirm('[VOD] 빵 목록에 추가되었습니다. 빵 목록으로 이동하시겠습니까?');
+                if (confirmation) {
+                    const response = await axios.post('http://localhost:8080/bbang/vod', {
+                        setbxId: parseInt(setbxId, 10),
+                        vodId: vodId,
+                        vodPoster: vodData.vodPoster
+                    });
+                    console.log('VOD added to BreadList:', response.data);
+                    setIsAddedToBreadList(true);
+                    localStorage.setItem('isAddedToBreadList', 'true'); // 로컬 스토리지에 찜 상태 저장
+                    navigate('/bread-list');
+                }
+            } catch (error) {
+                console.error('Error adding VOD to BreadList:', error);
+                alert('빵 목록에 추가하는 중 오류가 발생했습니다.');
             }
         } else {
-            if (window.confirm('[VOD] 빵 목록에서 제거되었습니다.')) {
-                setIsAddedToBreadList(false);
-                localStorage.setItem('isAddedToBreadList', 'false'); // 로컬 스토리지에 찜 상태 저장
+            try {
+                const confirmation = window.confirm('[VOD] 빵 목록에서 제거되었습니다.');
+                if (confirmation) {
+                    const response = await axios.delete('http://localhost:8080/bbang/vod', {
+                        data: {
+                            setbxId: parseInt(setbxId, 10),
+                            vodId: vodId
+                        }
+                    });
+                    console.log('VOD removed from BreadList:', response.data);
+                    setIsAddedToBreadList(false);
+                    localStorage.setItem('isAddedToBreadList', 'false'); // 로컬 스토리지에 찜 상태 저장
+                }
+            } catch (error) {
+                console.error('Error removing VOD from BreadList:', error);
+                alert('빵 목록에서 제거하는 중 오류가 발생했습니다.');
             }
         }
     };
