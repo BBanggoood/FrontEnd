@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../CSS/InitialScreen2.css';
 import logo from '../images/BBanggood_logo_white_line.png'; // 초기화면2 이미지 파일 import
 
 function InitialScreen2() {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // 로컬 스토리지 비우기
+        localStorage.clear();
+    }, []);
 
     return (
         <div className="initial-screen2">

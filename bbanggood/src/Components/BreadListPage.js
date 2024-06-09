@@ -13,7 +13,7 @@ const BreadListPage = () => {
     const [currentActorsIndex, setCurrentActorsIndex] = useState(0);
 
     useEffect(() => {
-        const setbxId = localStorage.getItem('username');
+        const setbxId = localStorage.getItem('setbxId');
         
         if (!setbxId) {
             console.error('setbxId not found in local storage');

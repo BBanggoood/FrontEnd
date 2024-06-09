@@ -25,9 +25,15 @@ const LoginPage = () => {
                 }]
             });
 
-            // 로그인 성공 시 로컬 스토리지에 username 저장 및 메인 페이지로 이동
+            // 로그인 성공 시 로컬 스토리지에 setbxId 및 JWT 토큰 저장 및 메인 페이지로 이동
             if (response.status === 200) {
-                localStorage.setItem('username', username);
+                localStorage.setItem('setbxId', username);
+
+                const token = response.headers['authorization']; // JWT 토큰 추출
+                if (token) {
+                    localStorage.setItem('jwtToken', token); // JWT 토큰 로컬 스토리지에 저장
+                }
+
                 navigate('/mainpage');
             } else {
                 alert('로그인에 실패했습니다. 다시 시도해주세요.');
