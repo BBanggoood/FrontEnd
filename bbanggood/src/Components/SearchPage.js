@@ -18,8 +18,16 @@ const SearchPage = () => {
   useEffect(() => {
     if (query) {
       const fetchData = async () => {
-        const data = Array(9).fill().map((_, index) => ({ id: index, title: `Result ${index + 1}` }));
-        setResults(data);
+        try {
+          const response = await fetch(`http://localhost:8080/contents/search/${encodeURIComponent(query)}`);
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const data = await response.json();
+          setResults(data);
+        } catch (error) {
+          console.error('Error fetching search results:', error);
+        }
       };
 
       fetchData();
@@ -57,8 +65,37 @@ const SearchPage = () => {
   };
 
   const handleVoiceSearchClick = () => {
-    // 여기에 음성 검색 API를 호출하는 로직을 추가하세요
-    console.log('음성 검색 시작'); // 이 부분을 실제 음성 검색 API로 대체하세요
+    if (!('webkitSpeechRecognition' in window)) {
+      alert('음성 검색을 지원하지 않는 브라우저입니다.');
+      return;
+    }
+
+    const recognition = new window.webkitSpeechRecognition();
+    recognition.lang = 'ko-KR'; // 언어 설정
+    recognition.interimResults = false; // 중간 결과를 반환하지 않음
+    recognition.maxAlternatives = 1; // 최대 대안 개수
+
+    recognition.onresult = (event) => {
+      const speechResult = event.results[0][0].transcript;
+      setTempTerm(speechResult);
+      setSearchTerm(speechResult);
+      navigate(`?q=${speechResult}`);
+    };
+
+    recognition.onerror = (event) => {
+      console.error('음성 인식 오류:', event.error);
+    };
+
+    recognition.onend = () => {
+      console.log('음성 인식 종료');
+    };
+
+    recognition.start();
+    console.log('음성 검색 시작');
+  };
+
+  const handlePosterClick = (vodId) => {
+    navigate(`/vod-detail/${vodId}`);
   };
 
   return (
@@ -93,9 +130,9 @@ const SearchPage = () => {
         <p className="search-query">"{searchTerm}"에 대한 검색 결과</p>
         <div className="search-results">
           {results.map((result) => (
-            <div key={result.id} className="search-result-box">
-              <div className="result-poster">포스터</div>
-              <div className="result-title">{result.title}</div>
+            <div key={result.vodId} className="search-result-box" onClick={() => handlePosterClick(result.vodId)}>
+              <img src={result.vodPoster} alt={result.vodName} className="result-poster" />
+              <div className="result-title">{result.vodName}</div>
             </div>
           ))}
         </div>
