@@ -45,9 +45,41 @@ const MyPage = () => {
         navigate('/personal-info-edit');
     };
 
+    const handleLogout = () => {
+        const confirmation = window.confirm('로그아웃하시겠습니까?');
+        if (confirmation) {
+            localStorage.removeItem('setbxId');
+            navigate('/login');
+        }
+    };
+
     if (!userData) {
         return <div>Loading...</div>; // 데이터 로드 중 표시
     }
+
+    const handleWithdrawal = async () => {
+        const confirmation = window.confirm('정말로 탈퇴하시겠습니까?');
+        if (confirmation) {
+            try {
+                const setbxId = localStorage.getItem('setbxId');
+                if (!setbxId) {
+                    alert('사용자 정보가 없습니다.');
+                    return;
+                }
+
+                const response = await axios.delete('http://localhost:8080/account/withdraw', {
+                    data: { setbxId: parseInt(setbxId, 10) } // 문자열을 정수로 변환
+                });
+
+                alert('정상적으로 탈퇴되었습니다.');
+                localStorage.removeItem('setbxId');
+                navigate('/');
+            } catch (error) {
+                console.error('회원 탈퇴 중 오류가 발생했습니다.', error);
+                alert('회원 탈퇴 중 오류가 발생했습니다.');
+            }
+        }
+    };
 
     const gender = userData.gender === null ? '알 수 없음' : (userData.gender === 'Male' ? '남성' : '여성');
 
@@ -72,8 +104,8 @@ const MyPage = () => {
                     </div>
                     <div className="my-page-actions">
                         <button className="action-button" onClick={handleAdultVerification}>성인인증</button>
-                        <button className="action-button">로그아웃</button>
-                        <button className="action-button">회원 탈퇴</button>
+                        <button className="action-button" onClick={handleLogout}>로그아웃</button>
+                        <button className="action-button" onClick={handleWithdrawal}>회원 탈퇴</button>
                     </div>
                 </div>
             </div>
