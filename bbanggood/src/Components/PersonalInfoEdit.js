@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../CSS/PersonalInfoEdit.css';
 
 const PersonalInfoEdit = () => {
@@ -18,15 +19,35 @@ const PersonalInfoEdit = () => {
         setFormData({ ...formData, [id]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (formData.password !== formData.confirmPassword) {
             alert('비밀번호가 일치하지 않습니다.');
             return;
         }
-        // 여기에서 formData를 사용하여 서버에 요청을 보내는 로직을 추가하세요.
-        alert('회원 정보가 수정되었습니다.');
-        navigate('/mypage');
+
+        try {
+            const setbxId = localStorage.getItem('setbxId'); // localStorage에서 setbxId를 가져옵니다.
+            if (!setbxId) {
+                alert('사용자 정보가 없습니다.');
+                return;
+            }
+
+            const response = await axios.patch('http://localhost:8080/account/update', {
+                setbxId: parseInt(setbxId, 10), // setbxId를 숫자로 변환합니다.
+                userPwd: formData.password,
+                confirmUserPwd: formData.confirmPassword,
+                userName: formData.name,
+                userSex: formData.sex,
+                userBirth: formData.birthDate
+            });
+
+            alert('회원 정보가 수정되었습니다.');
+            navigate('/mypage');
+        } catch (error) {
+            console.error('회원 정보 수정 중 오류가 발생했습니다.', error);
+            alert('회원 정보 수정 중 오류가 발생했습니다.');
+        }
     };
 
     const handleCancel = () => {
