@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../CSS/MainPage.css';
 
 const MainPage = () => {
@@ -24,20 +25,37 @@ const MainPage = () => {
         }
     };
 
-    const [recommendation1Contents, setRecommendation1Contents] = useState(initialContents.slice(0, 5));
-    const [recommendation1Page, setRecommendation1Page] = useState(1);
+    const [popularContents, setPopularContents] = useState([]);
+    const [popularPage, setPopularPage] = useState(1);
+    const [allPopularContents, setAllPopularContents] = useState([]);
 
-    const handleNextRecommendation1 = () => {
-        if (recommendation1Page === 1) {
-            setRecommendation1Contents(initialContents.slice(5, 10));
-            setRecommendation1Page(2);
+    useEffect(() => {
+        fetch('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/main/top')
+            .then(response => response.json())
+            .then(data => {
+                setAllPopularContents(data);
+                setPopularContents(data.slice(0, 5)); // 첫 5개 아이템을 초기값으로 설정
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }, []);
+
+    const navigate = useNavigate();
+
+    const handleImageClick = (vodId) => {
+        navigate(`/vod-detail/${vodId}`);
+    };
+
+    const handleNextPopular = () => {
+        if (popularPage === 1) {
+            setPopularContents(allPopularContents.slice(5, 10));
+            setPopularPage(2);
         }
     };
 
-    const handlePrevRecommendation1 = () => {
-        if (recommendation1Page === 2) {
-            setRecommendation1Contents(initialContents.slice(0, 5));
-            setRecommendation1Page(1);
+    const handlePrevPopular = () => {
+        if (popularPage === 2) {
+            setPopularContents(allPopularContents.slice(0, 5));
+            setPopularPage(1);
         }
     };
 
@@ -115,23 +133,23 @@ const MainPage = () => {
                     </div>
                 </div>
                 <div className="main-page-content-section">
-                    <h2>추천 1</h2>
+                    <h2>지금 인기있는 컨텐츠</h2>
                     <div className="content-container">
                         <div className="content-arrow-container left">
-                            {recommendation1Page === 2 && (
-                                <div className="content-arrow" onClick={handlePrevRecommendation1}>
+                            {popularPage === 2 && (
+                                <div className="content-arrow" onClick={handlePrevPopular}>
                                     ◀
                                 </div>
                             )}
                         </div>
-                        {recommendation1Contents.map((content, index) => (
-                            <div key={index} className="content-box">
-                                {content}
+                        {popularContents.map((content, index) => (
+                            <div key={index} className="content-box" onClick={() => handleImageClick(content.vodId)}>
+                                <img src={content.vodPoster} alt={`Content ${index + 1}`} className="content-image" />
                             </div>
                         ))}
                         <div className="content-arrow-container right">
-                            {recommendation1Page === 1 && (
-                                <div className="content-arrow" onClick={handleNextRecommendation1}>
+                            {popularPage === 1 && (
+                                <div className="content-arrow" onClick={handleNextPopular}>
                                     ▶
                                 </div>
                             )}
