@@ -22,7 +22,7 @@ const VodDetailPage = () => {
 
         // vodId를 사용하여 VOD 상세 정보를 요청
         if (vodId) {
-            fetch(`http://localhost:8080/contents/detail/vod/${vodId}`)
+            fetch(`http://localhost/contents/detail/vod/${vodId}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -53,7 +53,7 @@ const VodDetailPage = () => {
             try {
                 const confirmation = window.confirm('[VOD] 빵 목록에 추가되었습니다. 빵 목록으로 이동하시겠습니까?');
                 if (confirmation) {
-                    const response = await axios.post('http://localhost:8080/bbang/vod', {
+                    const response = await axios.post('http://localhost/bbang/vod', {
                         setbxId: parseInt(setbxId, 10),
                         vodId: vodId,
                         vodPoster: vodData.vodPoster
@@ -71,7 +71,7 @@ const VodDetailPage = () => {
             try {
                 const confirmation = window.confirm('[VOD] 빵 목록에서 제거되었습니다.');
                 if (confirmation) {
-                    const response = await axios.delete('http://localhost:8080/bbang/vod', {
+                    const response = await axios.delete('http://localhost/bbang/vod', {
                         data: {
                             setbxId: parseInt(setbxId, 10),
                             vodId: vodId

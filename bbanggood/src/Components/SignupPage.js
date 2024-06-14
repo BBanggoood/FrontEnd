@@ -34,7 +34,7 @@ const SignupPage = () => {
 
         try {
             console.log('Submitting form with data:', formData);
-            const response = await axios.post('http://localhost:8080/account/signup', formData, {
+            const response = await axios.post('http://localhost/account/signup', formData, {
                 headers: {
                     'Content-Type': 'application/json',
                 }

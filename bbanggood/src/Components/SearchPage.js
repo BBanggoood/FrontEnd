@@ -19,7 +19,7 @@ const SearchPage = () => {
     if (query) {
       const fetchData = async () => {
         try {
-          const response = await fetch(`http://localhost:8080/contents/search/${encodeURIComponent(query)}`);
+          const response = await fetch(`http://localhost/contents/search/${encodeURIComponent(query)}`);
           if (!response.ok) {
             throw new Error('Network response was not ok');
           }

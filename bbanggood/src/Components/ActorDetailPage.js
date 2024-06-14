@@ -20,7 +20,7 @@ const ActorDetailPage = () => {
         }
 
         // 출연진 이름을 사용하여 VOD 정보를 요청
-        fetch(`http://localhost:8080/contents/detail/cast/${encodeURIComponent(name)}`)
+        fetch(`http://localhost/contents/detail/cast/${encodeURIComponent(name)}`)
             .then(response => response.json())
             .then(data => {
                 console.log('Fetched actor VOD details:', data); // 데이터 확인을 위한 콘솔 로그
@@ -40,7 +40,7 @@ const ActorDetailPage = () => {
             try {
                 const confirmation = window.confirm(`[출연진] ${name} 빵 목록에 추가되었습니다. 빵 목록으로 이동하시겠습니까?`);
                 if (confirmation) {
-                    const response = await axios.post('http://localhost:8080/bbang/cast', {
+                    const response = await axios.post('http://localhost/bbang/cast', {
                         setbxId: parseInt(setbxId, 10),
                         vodCast: name,
                         vodCastPoster: vodData.length > 0 ? vodData[0].vodPoster : ''
@@ -58,7 +58,7 @@ const ActorDetailPage = () => {
             try {
                 const confirmation = window.confirm(`[출연진] ${name} 빵 목록에서 제거되었습니다.`);
                 if (confirmation) {
-                    const response = await axios.delete('http://localhost:8080/bbang/cast', {
+                    const response = await axios.delete('http://localhost/bbang/cast', {
                         data: {
                             setbxId: parseInt(setbxId, 10),
                             vodCast: name

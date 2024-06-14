@@ -46,7 +46,7 @@ const Anime = () => {
     const [popularPage, setPopularPage] = useState(1);
 
     useEffect(() => {
-        fetch('http://localhost:8080/contents/animation/top')
+        fetch('http://localhost/contents/animation/top')
             .then(response => response.json())
             .then(data => {
                 console.log('Fetched data:', data);
