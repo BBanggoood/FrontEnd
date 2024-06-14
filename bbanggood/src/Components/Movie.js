@@ -46,7 +46,7 @@ const Movie = () => {
     const [popularPage, setPopularPage] = useState(1);
 
     useEffect(() => {
-        fetch('http://localhost/contents/movie/top')
+        fetch('http://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/movie/top')
             .then(response => response.json())
             .then(data => {
                 console.log('Fetched data:', data);

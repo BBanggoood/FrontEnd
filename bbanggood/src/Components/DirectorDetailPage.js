@@ -20,7 +20,7 @@ const DirectorDetailPage = () => {
         }
 
         // 감독 이름을 사용하여 VOD 정보를 요청
-        fetch(`http://localhost/contents/detail/director/${encodeURIComponent(name)}`)
+        fetch(`http://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/detail/director/${encodeURIComponent(name)}`)
             .then(response => response.json())
             .then(data => {
                 console.log('Fetched director VOD details:', data); // 데이터 확인을 위한 콘솔 로그
@@ -40,7 +40,7 @@ const DirectorDetailPage = () => {
             try {
                 const confirmation = window.confirm(`[감독] ${name} 빵 목록에 추가되었습니다. 빵 목록으로 이동하시겠습니까?`);
                 if (confirmation) {
-                    const response = await axios.post('http://localhost/bbang/director', {
+                    const response = await axios.post('http://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/director', {
                         setbxId: parseInt(setbxId, 10),
                         vodDirector: name,
                         vodDirectorPoster: vodData.length > 0 ? vodData[0].vodPoster : ''
@@ -58,7 +58,7 @@ const DirectorDetailPage = () => {
             try {
                 const confirmation = window.confirm(`[감독] ${name} 빵 목록에서 제거되었습니다.`);
                 if (confirmation) {
-                    const response = await axios.delete('http://localhost/bbang/director', {
+                    const response = await axios.delete('http://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/director', {
                         data: {
                             setbxId: parseInt(setbxId, 10),
                             vodDirector: name
