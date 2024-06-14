@@ -44,13 +44,15 @@ const Drama = () => {
 
     const [popularContents, setPopularContents] = useState([]);
     const [popularPage, setPopularPage] = useState(1);
+    const [allPopularContents, setAllPopularContents] = useState([]);
 
     useEffect(() => {
         fetch('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/drama/top')
             .then(response => response.json())
             .then(data => {
                 console.log('Fetched data:', data);
-                setPopularContents(data);
+                setAllPopularContents(data);
+                setPopularContents(data.slice(0, 5)); // 첫 5개 아이템을 초기값으로 설정
             })
             .catch(error => console.error('Error fetching data:', error));
     }, []);
@@ -64,14 +66,14 @@ const Drama = () => {
 
     const handleNextPopular = () => {
         if (popularPage === 1) {
-            setPopularContents(prevContents => prevContents.slice(5, 10));
+            setPopularContents(allPopularContents.slice(5, 10));
             setPopularPage(2);
         }
     };
 
     const handlePrevPopular = () => {
         if (popularPage === 2) {
-            setPopularContents(prevContents => prevContents.slice(0, 5));
+            setPopularContents(allPopularContents.slice(0, 5));
             setPopularPage(1);
         }
     };
@@ -138,7 +140,7 @@ const Drama = () => {
                                 </div>
                             )}
                         </div>
-                        {popularContents.slice(0, 5).map((content, index) => (
+                        {popularContents.map((content, index) => (
                             <div key={index} className="content-box" onClick={() => handleImageClick(content.vodId)}>
                                 <img src={content.vodPoster} alt={`Content ${index + 1}`} className="content-image" />
                             </div>
