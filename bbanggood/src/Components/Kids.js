@@ -46,7 +46,7 @@ const Kids = () => {
     const [popularPage, setPopularPage] = useState(1);
 
     useEffect(() => {
-        fetch('http://localhost/contents/kids/top')
+        fetch('http://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/kids/top')
             .then(response => response.json())
             .then(data => {
                 console.log('Fetched data:', data);

@@ -46,7 +46,7 @@ const Drama = () => {
     const [popularPage, setPopularPage] = useState(1);
 
     useEffect(() => {
-        fetch('http://localhost/contents/drama/top')
+        fetch('http://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/drama/top')
             .then(response => response.json())
             .then(data => {
                 console.log('Fetched data:', data);
