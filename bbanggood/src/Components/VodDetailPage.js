@@ -14,11 +14,9 @@ const VodDetailPage = () => {
     useEffect(() => {
         console.log('vodId from URL:', vodId); // vodId가 제대로 설정되는지 확인
 
-        // 페이지 로드 시 로컬 스토리지에서 찜 상태 불러오기
-        const storedIsAdded = localStorage.getItem('isAddedToBreadList');
-        if (storedIsAdded === 'true') {
-            setIsAddedToBreadList(true);
-        }
+        // VOD별로 로컬 스토리지에서 찜 상태 불러오기
+        const storedIsAdded = localStorage.getItem(`isAddedToBreadList_${vodId}`);
+        setIsAddedToBreadList(storedIsAdded === 'true');
 
         // vodId를 사용하여 VOD 상세 정보를 요청
         if (vodId) {
@@ -51,38 +49,38 @@ const VodDetailPage = () => {
 
         if (!isAddedToBreadList) {
             try {
+                const response = await axios.post('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/vod', {
+                    setbxId: parseInt(setbxId, 10),
+                    vodId: vodId,
+                    vodPoster: vodData.vodPoster
+                });
+                console.log('VOD added to BreadList:', response.data);
+                setIsAddedToBreadList(true);
+                localStorage.setItem(`isAddedToBreadList_${vodId}`, 'true'); // 로컬 스토리지에 찜 상태 저장
+
                 const confirmation = window.confirm('[VOD] 빵 목록에 추가되었습니다. 빵 목록으로 이동하시겠습니까?');
-                if (confirmation) {
-                    const response = await axios.post('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/vod', {
-                        setbxId: parseInt(setbxId, 10),
-                        vodId: vodId,
-                        vodPoster: vodData.vodPoster
-                    });
-                    console.log('VOD added to BreadList:', response.data);
-                    setIsAddedToBreadList(true);
-                    localStorage.setItem('isAddedToBreadList', 'true'); // 로컬 스토리지에 찜 상태 저장
+                if (confirmation) {    
                     navigate('/bread-list');
                 }
             } catch (error) {
-                console.error('Error adding VOD to BreadList:', error);
+                console.error('Error adding VOD to BreadList:', error.response ? error.response.data : error.message);
                 alert('빵 목록에 추가하는 중 오류가 발생했습니다.');
             }
         } else {
             try {
-                const confirmation = window.confirm('[VOD] 빵 목록에서 제거되었습니다.');
-                if (confirmation) {
-                    const response = await axios.delete('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/vod', {
-                        data: {
-                            setbxId: parseInt(setbxId, 10),
-                            vodId: vodId
-                        }
-                    });
-                    console.log('VOD removed from BreadList:', response.data);
-                    setIsAddedToBreadList(false);
-                    localStorage.setItem('isAddedToBreadList', 'false'); // 로컬 스토리지에 찜 상태 저장
-                }
+                const response = await axios.delete('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/vod', {
+                    data: {
+                        setbxId: parseInt(setbxId, 10),
+                        vodId: vodId
+                    }
+                });
+                console.log('VOD removed from BreadList:', response.data);
+                setIsAddedToBreadList(false);
+                localStorage.setItem(`isAddedToBreadList_${vodId}`, 'false'); // 로컬 스토리지에 찜 상태 저장
+
+                window.confirm('[VOD] 빵 목록에서 제거되었습니다.');
             } catch (error) {
-                console.error('Error removing VOD from BreadList:', error);
+                console.error('Error removing VOD from BreadList:', error.response ? error.response.data : error.message);
                 alert('빵 목록에서 제거하는 중 오류가 발생했습니다.');
             }
         }
