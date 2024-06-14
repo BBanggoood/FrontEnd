@@ -20,9 +20,10 @@ const BreadListPage = () => {
             return;
         }
 
+        // MongoDB에 string으로 저장된 경우, string 그대로 요청
         const fetchVOD = async () => {
             try {
-                const response = await axios.get(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/vod/${setbxId}`);
+                const response = await axios.get(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/${setbxId}`);
                 setVodList(response.data);
             } catch (error) {
                 console.error('Error fetching VOD data:', error);
@@ -31,7 +32,7 @@ const BreadListPage = () => {
 
         const fetchDirectors = async () => {
             try {
-                const response = await axios.get(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/director/${setbxId}`);
+                const response = await axios.get(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/${setbxId}`);
                 setDirectorsList(response.data);
             } catch (error) {
                 console.error('Error fetching directors data:', error);
@@ -40,7 +41,7 @@ const BreadListPage = () => {
 
         const fetchActors = async () => {
             try {
-                const response = await axios.get(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/cast/${setbxId}`);
+                const response = await axios.get(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/${setbxId}`);
                 setActorsList(response.data);
             } catch (error) {
                 console.error('Error fetching actors data:', error);
@@ -81,7 +82,7 @@ const BreadListPage = () => {
                         </div>
                         <div className="bread-content-box-container">
                             {vodList.map((vod, index) => (
-                                <Link to={`/detail/vod/${vod.vodId}`} key={index} className={getBoxClassName(index, currentVODIndex, vodList)}>
+                                <Link to={`/vod-detail/${vod.vodId}`} key={index} className={getBoxClassName(index, currentVODIndex, vodList)}>
                                     <img src={vod.vodPoster} alt={vod.title} onError={(e) => console.error(`Error loading image: ${vod.vodPoster}`, e)} />
                                 </Link>
                             ))}
@@ -99,7 +100,7 @@ const BreadListPage = () => {
                         </div>
                         <div className="bread-content-box-container">
                             {directorsList.map((director, index) => (
-                                <Link to={`/detail/director/${director.vodDirector}`} key={index} className={getBoxClassName(index, currentDirectorsIndex, directorsList)}>
+                                <Link to={`/director-detail/${director.vodDirector}`} key={index} className={getBoxClassName(index, currentDirectorsIndex, directorsList)}>
                                     <img src={director.vodDirectorPoster} alt={director.vodDirector} onError={(e) => console.error(`Error loading image: ${director.vodDirectorPoster}`, e)} />
                                 </Link>
                             ))}
@@ -117,7 +118,7 @@ const BreadListPage = () => {
                         </div>
                         <div className="bread-content-box-container">
                             {actorsList.map((actor, index) => (
-                                <Link to={`/detail/cast/${actor.vodCast}`} key={index} className={getBoxClassName(index, currentActorsIndex, actorsList)}>
+                                <Link to={`/actor-detail/${actor.vodCast}`} key={index} className={getBoxClassName(index, currentActorsIndex, actorsList)}>
                                     <img src={actor.vodCastPoster} alt={actor.vodCast} onError={(e) => console.error(`Error loading image: ${actor.vodCastPoster}`, e)} />
                                 </Link>
                             ))}

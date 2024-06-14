@@ -14,10 +14,15 @@ const DirectorDetailPage = () => {
     const [vodData, setVodData] = useState([]); // VOD 데이터를 저장할 상태
 
     useEffect(() => {
-        const savedState = localStorage.getItem('directorAddedToBreadList');
-        if (savedState) {
-            setIsAddedToBreadList(JSON.parse(savedState));
+        const setbxId = localStorage.getItem('setbxId');
+        if (!setbxId) {
+            console.error('setbxId not found in local storage');
+            return;
         }
+
+        // 감독별로 로컬 스토리지에서 찜 상태 불러오기
+        const storedIsAdded = localStorage.getItem(`isAddedToBreadList_director_${name}`);
+        setIsAddedToBreadList(storedIsAdded === 'true');
 
         // 감독 이름을 사용하여 VOD 정보를 요청
         fetch(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/detail/director/${encodeURIComponent(name)}`)
@@ -38,38 +43,38 @@ const DirectorDetailPage = () => {
 
         if (!isAddedToBreadList) {
             try {
-                const confirmation = window.confirm(`[감독] ${name} 빵 목록에 추가되었습니다. 빵 목록으로 이동하시겠습니까?`);
-                if (confirmation) {
-                    const response = await axios.post('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/director', {
-                        setbxId: parseInt(setbxId, 10),
-                        vodDirector: name,
-                        vodDirectorPoster: vodData.length > 0 ? vodData[0].vodPoster : ''
-                    });
-                    console.log('Director added to BreadList:', response.data);
-                    setIsAddedToBreadList(true);
-                    localStorage.setItem('directorAddedToBreadList', 'true');
+                const response = await axios.post('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/director', {
+                    setbxId: parseInt(setbxId, 10),
+                    vodDirector: name,
+                    vodDirectorPoster: vodData.length > 0 ? vodData[0].vodPoster : ''
+                });
+                console.log('Director added to BreadList:', response.data);
+                setIsAddedToBreadList(true);
+                localStorage.setItem(`isAddedToBreadList_director_${name}`, 'true'); // 로컬 스토리지에 찜 상태 저장
+
+                const confirmation = window.confirm('[감독] 빵 목록에 추가되었습니다. 빵 목록으로 이동하시겠습니까?');
+                if (confirmation) {    
                     navigate('/bread-list');
                 }
             } catch (error) {
-                console.error('Error adding director to BreadList:', error);
+                console.error('Error adding director to BreadList:', error.response ? error.response.data : error.message);
                 alert('빵 목록에 추가하는 중 오류가 발생했습니다.');
             }
         } else {
             try {
-                const confirmation = window.confirm(`[감독] ${name} 빵 목록에서 제거되었습니다.`);
-                if (confirmation) {
-                    const response = await axios.delete('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/director', {
-                        data: {
-                            setbxId: parseInt(setbxId, 10),
-                            vodDirector: name
-                        }
-                    });
-                    console.log('Director removed from BreadList:', response.data);
-                    setIsAddedToBreadList(false);
-                    localStorage.setItem('directorAddedToBreadList', 'false');
-                }
+                const response = await axios.delete('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/director', {
+                    data: {
+                        setbxId: parseInt(setbxId, 10),
+                        vodDirector: name
+                    }
+                });
+                console.log('Director removed from BreadList:', response.data);
+                setIsAddedToBreadList(false);
+                localStorage.setItem(`isAddedToBreadList_director_${name}`, 'false'); // 로컬 스토리지에 찜 상태 저장
+
+                window.confirm('[감독] 빵 목록에서 제거되었습니다.');
             } catch (error) {
-                console.error('Error removing director from BreadList:', error);
+                console.error('Error removing director from BreadList:', error.response ? error.response.data : error.message);
                 alert('빵 목록에서 제거하는 중 오류가 발생했습니다.');
             }
         }

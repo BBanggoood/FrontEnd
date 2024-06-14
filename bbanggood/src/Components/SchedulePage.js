@@ -31,7 +31,7 @@ const SchedulePage = () => {
     const startOfMonth = new Date(date.getFullYear(), date.getMonth(), 1).toISOString();
     const endOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0, 23, 59, 59, 999).toISOString();
     try {
-      const response = await axios.get(`http://localhost:80/contents/calender?start=${startOfMonth}&end=${endOfMonth}`);
+      const response = await axios.get(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/calender?start=${startOfMonth}&end=${endOfMonth}`);
       setVods(response.data);
     } catch (error) {
       console.error('There was an error fetching the VODs!', error);
@@ -44,7 +44,7 @@ const SchedulePage = () => {
     const endOfDay = new Date(date.setHours(23, 59, 59, 999)).toISOString();
     
     try {
-      const response = await axios.get(`http://localhost:80/contents/calender?start=${startOfDay}&end=${endOfDay}`);
+      const response = await axios.get(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/calender?start=${startOfDay}&end=${endOfDay}`);
       if (response.data.length > 0) {
         const movie = response.data[0];
         setMovieInfo({

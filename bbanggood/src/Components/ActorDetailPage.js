@@ -14,10 +14,15 @@ const ActorDetailPage = () => {
     const [vodData, setVodData] = useState([]); // VOD 데이터를 저장할 상태
 
     useEffect(() => {
-        const savedBreadListStatus = localStorage.getItem('actorIsAddedToBreadList');
-        if (savedBreadListStatus === 'true') {
-            setIsAddedToBreadList(true);
+        const setbxId = localStorage.getItem('setbxId');
+        if (!setbxId) {
+            console.error('setbxId not found in local storage');
+            return;
         }
+
+        // 출연진별로 로컬 스토리지에서 찜 상태 불러오기
+        const storedIsAdded = localStorage.getItem(`isAddedToBreadList_cast_${name}`);
+        setIsAddedToBreadList(storedIsAdded === 'true');
 
         // 출연진 이름을 사용하여 VOD 정보를 요청
         fetch(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/detail/cast/${encodeURIComponent(name)}`)
@@ -38,38 +43,38 @@ const ActorDetailPage = () => {
 
         if (!isAddedToBreadList) {
             try {
-                const confirmation = window.confirm(`[출연진] ${name} 빵 목록에 추가되었습니다. 빵 목록으로 이동하시겠습니까?`);
-                if (confirmation) {
-                    const response = await axios.post('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/cast', {
-                        setbxId: parseInt(setbxId, 10),
-                        vodCast: name,
-                        vodCastPoster: vodData.length > 0 ? vodData[0].vodPoster : ''
-                    });
-                    console.log('Cast added to BreadList:', response.data);
-                    setIsAddedToBreadList(true);
-                    localStorage.setItem('actorIsAddedToBreadList', 'true'); // 로컬 스토리지에 찜 상태 저장
+                const response = await axios.post('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/cast', {
+                    setbxId: parseInt(setbxId, 10),
+                    vodCast: name,
+                    vodCastPoster: vodData.length > 0 ? vodData[0].vodPoster : ''
+                });
+                console.log('Cast added to BreadList:', response.data);
+                setIsAddedToBreadList(true);
+                localStorage.setItem(`isAddedToBreadList_cast_${name}`, 'true'); // 로컬 스토리지에 찜 상태 저장
+
+                const confirmation = window.confirm('[출연진] 빵 목록에 추가되었습니다. 빵 목록으로 이동하시겠습니까?');
+                if (confirmation) {    
                     navigate('/bread-list');
                 }
             } catch (error) {
-                console.error('Error adding cast to BreadList:', error);
+                console.error('Error adding cast to BreadList:', error.response ? error.response.data : error.message);
                 alert('빵 목록에 추가하는 중 오류가 발생했습니다.');
             }
         } else {
             try {
-                const confirmation = window.confirm(`[출연진] ${name} 빵 목록에서 제거되었습니다.`);
-                if (confirmation) {
-                    const response = await axios.delete('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/cast', {
-                        data: {
-                            setbxId: parseInt(setbxId, 10),
-                            vodCast: name
-                        }
-                    });
-                    console.log('Cast removed from BreadList:', response.data);
-                    setIsAddedToBreadList(false);
-                    localStorage.setItem('actorIsAddedToBreadList', 'false'); // 로컬 스토리지에 찜 상태 저장
-                }
+                const response = await axios.delete('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/cast', {
+                    data: {
+                        setbxId: parseInt(setbxId, 10),
+                        vodCast: name
+                    }
+                });
+                console.log('Cast removed from BreadList:', response.data);
+                setIsAddedToBreadList(false);
+                localStorage.setItem(`isAddedToBreadList_cast_${name}`, 'false'); // 로컬 스토리지에 찜 상태 저장
+
+                window.confirm('[출연진] 빵 목록에서 제거되었습니다.');
             } catch (error) {
-                console.error('Error removing cast from BreadList:', error);
+                console.error('Error removing cast from BreadList:', error.response ? error.response.data : error.message);
                 alert('빵 목록에서 제거하는 중 오류가 발생했습니다.');
             }
         }
