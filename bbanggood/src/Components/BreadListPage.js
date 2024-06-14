@@ -22,7 +22,7 @@ const BreadListPage = () => {
 
         const fetchVOD = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/bbang/vod/${setbxId}`);
+                const response = await axios.get(`http://localhost/bbang/vod/${setbxId}`);
                 setVodList(response.data);
             } catch (error) {
                 console.error('Error fetching VOD data:', error);
@@ -31,7 +31,7 @@ const BreadListPage = () => {
 
         const fetchDirectors = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/bbang/director/${setbxId}`);
+                const response = await axios.get(`http://localhost/bbang/director/${setbxId}`);
                 setDirectorsList(response.data);
             } catch (error) {
                 console.error('Error fetching directors data:', error);
@@ -40,7 +40,7 @@ const BreadListPage = () => {
 
         const fetchActors = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/bbang/cast/${setbxId}`);
+                const response = await axios.get(`http://localhost/bbang/cast/${setbxId}`);
                 setActorsList(response.data);
             } catch (error) {
                 console.error('Error fetching actors data:', error);

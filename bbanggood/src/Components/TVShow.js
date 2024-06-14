@@ -46,7 +46,7 @@ const TVShow = () => {
     const [popularPage, setPopularPage] = useState(1);
 
     useEffect(() => {
-        fetch('http://localhost:8080/contents/tv/top')
+        fetch('http://localhost/contents/tv/top')
             .then(response => response.json())
             .then(data => {
                 console.log('Fetched data:', data);

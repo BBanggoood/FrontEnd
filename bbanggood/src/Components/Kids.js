@@ -46,7 +46,7 @@ const Kids = () => {
     const [popularPage, setPopularPage] = useState(1);
 
     useEffect(() => {
-        fetch('http://localhost:8080/contents/kids/top')
+        fetch('http://localhost/contents/kids/top')
             .then(response => response.json())
             .then(data => {
                 console.log('Fetched data:', data);

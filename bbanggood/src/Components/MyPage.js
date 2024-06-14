@@ -13,7 +13,7 @@ const MyPage = () => {
             try {
                 const setbxId = localStorage.getItem('setbxId');
                 if (setbxId) {
-                    const response = await axios.post('http://localhost:8080/userdata', {
+                    const response = await axios.post('http://localhost/userdata', {
                         setbxId
                     }, {
                         headers: {
@@ -67,7 +67,7 @@ const MyPage = () => {
                     return;
                 }
 
-                const response = await axios.delete('http://localhost:8080/account/withdraw', {
+                const response = await axios.delete('http://localhost/account/withdraw', {
                     data: { setbxId: parseInt(setbxId, 10) } // 문자열을 정수로 변환
                 });
 
