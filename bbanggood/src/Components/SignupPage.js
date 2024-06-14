@@ -34,7 +34,7 @@ const SignupPage = () => {
 
         try {
             console.log('Submitting form with data:', formData);
-            const response = await axios.post('http://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/account/signup', formData, {
+            const response = await axios.post('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/account/signup', formData, {
                 headers: {
                     'Content-Type': 'application/json',
                 }

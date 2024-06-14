@@ -33,7 +33,7 @@ const PersonalInfoEdit = () => {
                 return;
             }
 
-            const response = await axios.patch('http://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/account/update', {
+            const response = await axios.patch('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/account/update', {
                 setbxId: parseInt(setbxId, 10), // setbxId를 숫자로 변환합니다.
                 userPwd: formData.password,
                 confirmUserPwd: formData.confirmPassword,
