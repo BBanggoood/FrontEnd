@@ -60,6 +60,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start; /* 왼쪽 정렬 */
+    overflow: hidden; /* 내부 요소가 벗어나지 않도록 숨김 */
 }
 
 .vod-title-row {
@@ -72,8 +73,8 @@
 .vod-title {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
-    font-size: 48px;
-    line-height: 29px;
+    font-size: 34px;
+    line-height: 40px;
     display: flex;
     align-items: center;
     justify-content: space-between; /* 아이콘을 오른쪽 정렬로 이동 */
@@ -98,6 +99,13 @@
 
 .vod-summary {
     width: 100%;
+    overflow: auto; /* 스크롤이 가능하도록 설정 */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.vod-summary::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera에서 스크롤바 숨김 */
 }
 
 .clickable {
