@@ -82,7 +82,7 @@
 }
 
 .date-text {
-    font-size: 0.8em;
+    font-size: 0.9em;
     text-align: center;
     color: #000 !important; /* 텍스트 색상을 검은색으로 강제 설정 */
 }
@@ -215,3 +215,17 @@
     height: 100%;
     border-radius: 30px;
 }
+
+.movie-date {
+    background-color: #FFCC66; /* 강조 표시를 위한 색상 */
+    font-weight: bold; /* 굵은 글씨 */
+  }
+  
+  .sunday {
+    color: red; /* 일요일 색상 */
+  }
+  
+  .saturday {
+    color: blue; /* 토요일 색상 */
+  }
+  

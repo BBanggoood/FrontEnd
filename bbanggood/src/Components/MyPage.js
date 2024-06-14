@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../CSS/MyPage.css';
+import logo from '../images/BBanggood_logo_white_line.png'; // 기존 로고
 import profileImage from '../images/호빵맨.png'; // 새로운 프로필 이미지
 
 const MyPage = () => {
@@ -81,20 +82,18 @@ const MyPage = () => {
         }
     };
 
-    const gender = userData.gender === null ? '알 수 없음' : (userData.gender === 'Male' ? '남성' : '여성');
+    const gender = userData.gender === null ? '남성' : (userData.gender === 'Male' ? '남성' : '여성');
 
     return (
         <div className="my-page">
             <div className="my-page-container">
-                <div className="my-page-welcome">
-                    <div className="welcome-text">
-                        <h3>HELLO, BBANGGOOD !</h3>
-                        <button className="edit-button" onClick={handleEditInfo}>개인 정보 수정</button>
-                    </div>
-                    <img src={profileImage} alt="Profile" className="welcome-img" />
+                <div className="my-page-header">
+                    <img src={logo} alt="Logo" className="my-page-logo" />
+                    <h2>회원 정보</h2>
                 </div>
-                <div className="my-page-main">
+                <div className="my-page-content">
                     <div className="my-page-info">
+                        <img src={profileImage} alt="Profile" className="profile-img" />
                         <div className="info-text">
                             <p>이름: {userData.username}</p>
                             <p>셋탑번호: {userData.setbxId}</p>
@@ -103,6 +102,7 @@ const MyPage = () => {
                         </div>
                     </div>
                     <div className="my-page-actions">
+                        <button className="action-button" onClick={handleEditInfo}>개인 정보 수정</button>
                         <button className="action-button" onClick={handleAdultVerification}>성인인증</button>
                         <button className="action-button" onClick={handleLogout}>로그아웃</button>
                         <button className="action-button" onClick={handleWithdrawal}>회원 탈퇴</button>
@@ -112,5 +112,6 @@ const MyPage = () => {
         </div>
     );
 };
+
 
 export default MyPage;
