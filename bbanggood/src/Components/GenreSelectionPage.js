@@ -14,13 +14,14 @@ const GenreSelectionPage = () => {
     const handleGenreClick = (genre) => {
         if (selectedGenres.includes(genre)) {
             setSelectedGenres(selectedGenres.filter(item => item !== genre));
-        } else {
+        } else if (selectedGenres.length < 3) {
             setSelectedGenres([...selectedGenres, genre]);
         }
     };
 
     const handleNextClick = () => {
-        if (selectedGenres.length >= 3) {
+        if (selectedGenres.length === 3) {
+            localStorage.setItem('selectedGenres', JSON.stringify(selectedGenres));
             navigate('/contents-selection');
         }
     };
@@ -31,10 +32,10 @@ const GenreSelectionPage = () => {
                 <div className="genre-sidebar">
                     <div className="circle"></div>
                     <div className="circle"></div>
-                    <div className="circle"></div>
+                    <div class="circle"></div>
                 </div>
                 <div className="genre-inner-rectangle">
-                    <h2 style={{ fontSize: '1.5em' }}>좋아하는 장르를 선택해주세요 (3개 이상)</h2>
+                    <h2 style={{ fontSize: '1.5em' }}>좋아하는 장르를 선택해주세요 (3개 선택)</h2>
                     <div className="genre-grid">
                         {genres.map((genre, index) => (
                             <div
@@ -49,7 +50,7 @@ const GenreSelectionPage = () => {
                     <button
                         className="genre-next-button"
                         onClick={handleNextClick}
-                        disabled={selectedGenres.length < 3}
+                        disabled={selectedGenres.length !== 3}
                     >
                         다음
                     </button>
