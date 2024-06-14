@@ -1,14 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import '../CSS/SchedulePage.css';
+import axios from 'axios';
 
 const SchedulePage = () => {
-  const [currentMonth] = useState(new Date());
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [vods, setVods] = useState([]);
   const [movieInfo, setMovieInfo] = useState(null);
 
+  useEffect(() => {
+    fetchVodsForMonth(currentMonth);
+  }, [currentMonth]);
+
   const handleDateChange = (date) => {
-    console.log(date);
+    setCurrentMonth(date);
+  };
+
+  const handleActiveStartDateChange = ({ activeStartDate }) => {
+    setCurrentMonth(activeStartDate);
+  };
+
+  const fetchVodsForMonth = async (date) => {
+    const startOfMonth = new Date(date.getFullYear(), date.getMonth(), 1).toISOString();
+    const endOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0, 23, 59, 59, 999).toISOString();
+    try {
+      const response = await axios.get(`http://localhost:80/contents/calender?start=${startOfMonth}&end=${endOfMonth}`);
+      setVods(response.data);
+    } catch (error) {
+      console.error('There was an error fetching the VODs!', error);
+    }
   };
 
   const handleCheckMovie = () => {
@@ -24,24 +45,46 @@ const SchedulePage = () => {
 
   const tileClassName = ({ date, view }) => {
     if (view === 'month') {
+      let className = '';
+  
       const day = date.getDay();
       if (day === 0) {
-        return 'sunday';
+        className += 'sunday ';
       } else if (day === 6) {
-        return 'saturday';
+        className += 'saturday ';
+      }
+  
+      // Check if there's a movie on this date
+      const vod = vods.find(vod => {
+        const vodDate = new Date(vod.vodOpenAt);
+        return vodDate.toDateString() === date.toDateString();
+      });
+  
+      if (vod) {
+        className += 'movie-date';
+      }
+  
+      return className.trim();
+    }
+    return null;
+  };  
+
+  const tileContent = ({ date, view }) => {
+    if (view === 'month' && vods.length > 0) {
+      const vod = vods.find(vod => {
+        const vodDate = new Date(vod.vodOpenAt);
+        return vodDate.toDateString() === date.toDateString();
+      });
+
+      if (vod) {
+        return (
+          <div className="date-tile">
+            <div className="date-text">{vod.vodName}</div>
+          </div>
+        );
       }
     }
     return null;
-  };
-
-  const tileContent = ({ date, view }) => {
-    if (view === 'month') {
-      return (
-        <div className="date-tile">
-          <div className="date-text">영화/프로그램 정보</div>
-        </div>
-      );
-    }
   };
 
   return (
@@ -53,6 +96,7 @@ const SchedulePage = () => {
             <Calendar
               value={currentMonth}
               onChange={handleDateChange}
+              onActiveStartDateChange={handleActiveStartDateChange}
               className="react-calendar"
               showNeighboringMonth={false}
               tileClassName={tileClassName}
