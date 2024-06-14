@@ -13,7 +13,7 @@ const MyPage = () => {
             try {
                 const setbxId = localStorage.getItem('setbxId');
                 if (setbxId) {
-                    const response = await axios.post('http://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/userdata', {
+                    const response = await axios.post('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/userdata', {
                         setbxId
                     }, {
                         headers: {
@@ -67,7 +67,7 @@ const MyPage = () => {
                     return;
                 }
 
-                const response = await axios.delete('http://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/account/withdraw', {
+                const response = await axios.delete('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/account/withdraw', {
                     data: { setbxId: parseInt(setbxId, 10) } // 문자열을 정수로 변환
                 });
 
