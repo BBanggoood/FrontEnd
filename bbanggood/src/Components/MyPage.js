@@ -8,6 +8,7 @@ import profileImage from '../images/호빵맨.png'; // 새로운 프로필 이�
 const MyPage = () => {
     const navigate = useNavigate();
     const [userData, setUserData] = useState(null);
+    const [isAdultVerified, setIsAdultVerified] = useState(false);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -30,6 +31,11 @@ const MyPage = () => {
                 } else {
                     console.error('셋톱박스 아이디가 로컬 스토리지에 없습니다.');
                 }
+
+                const adultVerified = localStorage.getItem('isAdultVerified');
+                if (adultVerified === 'true') {
+                    setIsAdultVerified(true);
+                }
             } catch (error) {
                 console.error('사용자 데이터를 가져오는 중 오류가 발생했습니다.', error);
             }
@@ -39,7 +45,11 @@ const MyPage = () => {
     }, []);
 
     const handleAdultVerification = () => {
-        navigate('/adult-verification');
+        if (isAdultVerified) {
+            navigate('/adult-verification-pin');
+        } else {
+            navigate('/adult-verification');
+        }
     };
 
     const handleEditInfo = () => {
@@ -103,7 +113,9 @@ const MyPage = () => {
                     </div>
                     <div className="my-page-actions">
                         <button className="action-button" onClick={handleEditInfo}>개인 정보 수정</button>
-                        <button className="action-button" onClick={handleAdultVerification}>성인인증</button>
+                        <button className="action-button" onClick={handleAdultVerification}>
+                            {isAdultVerified ? 'PIN번호 변경' : '성인인증'}
+                        </button>
                         <button className="action-button" onClick={handleLogout}>로그아웃</button>
                         <button className="action-button" onClick={handleWithdrawal}>회원 탈퇴</button>
                     </div>
@@ -112,6 +124,5 @@ const MyPage = () => {
         </div>
     );
 };
-
 
 export default MyPage;

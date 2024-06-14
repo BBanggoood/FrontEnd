@@ -1,54 +1,101 @@
 .adult-verification-page {
-    max-height: 600px;
-    padding: 20px;
-    background-color: #FFF6F1;
-    height: calc(100vh - 80px);
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
 }
 
 .adult-verification-container {
-    width: 1050px; /* 너비 조정 */
-    height: 500px;
-    background: rgba(184, 144, 121, 0.9);
-    border-radius: 40px;
-    padding: 30px; /* 패딩 조정 */
-    display: flex;
-    flex-direction: column;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
 }
 
 .adult-verification-header {
-    display: flex;
-    align-items: center;
     margin-bottom: 20px;
 }
 
 .adult-verification-logo {
-    width: 100px; /* 로고 크기 조정 */
-    height: 100px; /* 로고 크기 조정 */
-    margin-right: 20px;
+    width: 100px;
+    height: auto;
 }
 
 .adult-verification-title {
-    font-family: 'Inter', sans-serif;
-    font-size: 32px; /* 텍스트 크기 조정 */
-    color: #000;
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 .adult-verification-box {
-    width: 900px; /* 박스 너비 조정 */
-    height: 550px; /* 박스 높이 조정 */
-    background: #936C5E;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto; /* 중앙 배치 */
+    margin-top: 20px;
 }
 
-.adult-verification-text {
-    font-family: 'Inter', sans-serif;
-    font-size: 48px;
+.phone-verification,
+.verification-code,
+.pin-verification {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-field {
+    width: 60%; /* Adjusted width to allow space for the button */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.verification-button {
+    padding: 10px 20px;
+    background-color: #FFE5B6;
     color: #000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 10px; /* Added margin to separate button from input */
+    white-space: nowrap; /* Prevent button text from wrapping */
+}
+
+.verification-button:hover {
+    background-color: #FFD9A6;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.input-phone {
+    margin-top: 30px;
+    padding-right: 1%;
+    width: 98%
+}
+
+.input-phone-verification {
+    padding-right: 4%;
+    width: 99%;
+}
+
+.input-pin {
+    padding-right: 40%;
+    width: 90%;
+}
+
+.input-pin-verification {
+    padding-right: 5%;
 }
