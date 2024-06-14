@@ -195,6 +195,8 @@
     text-align: center;
     width: 300px; /* 박스의 너비 조정 */
     height: 150px;
+    line-height: 1.8;
+    font-size: 100%;
 }
 
 .movie-poster {
@@ -229,3 +231,8 @@
     color: blue; /* 토요일 색상 */
   }
   
+  .highlighted {
+    font-weight: bold;
+    font-size: 1.5em; /* 폰트 크기를 조정 */
+    color: #FFA500; /* 강조 표시할 색상 (원하는 색상으로 변경 가능) */
+  }
