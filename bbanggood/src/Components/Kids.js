@@ -3,41 +3,67 @@ import { useNavigate } from 'react-router-dom';
 import '../CSS/Kids.css';
 
 const Kids = () => {
-    const initialContents = [
-        "Content 1", "Content 2", "Content 3", "Content 4", "Content 5",
-        "Content 6", "Content 7", "Content 8", "Content 9", "Content 10"
-    ];
-
-    const [recommendation1Contents, setRecommendation1Contents] = useState(initialContents.slice(0, 5));
+    const [recommendation1Contents, setRecommendation1Contents] = useState([]);
     const [recommendation1Page, setRecommendation1Page] = useState(1);
+    const [allRecommendation1Contents, setAllRecommendation1Contents] = useState([]);
+    
+    const [recommendation2Contents, setRecommendation2Contents] = useState([]);
+    const [recommendation2Page, setRecommendation2Page] = useState(1);
+    const [allRecommendation2Contents, setAllRecommendation2Contents] = useState([]);
+
+    useEffect(() => {
+        const setbxId = localStorage.getItem('setbxId');
+        if (setbxId) {
+            fetch('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/recommend/kids', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ setbxId }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const firstTen = data.slice(0, 10);
+                    const secondTen = data.slice(10, 20);
+                    setAllRecommendation1Contents(firstTen);
+                    setRecommendation1Contents(firstTen.slice(0, 5));
+                    setAllRecommendation2Contents(secondTen);
+                    setRecommendation2Contents(secondTen.slice(0, 5));
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+    }, []);
+
+    const navigate = useNavigate();
+
+    const handleImageClick = (vodId) => {
+        navigate(`/vod-detail/${vodId}`);
+    };
 
     const handleNextRecommendation1 = () => {
         if (recommendation1Page === 1) {
-            setRecommendation1Contents(initialContents.slice(5, 10));
+            setRecommendation1Contents(allRecommendation1Contents.slice(5, 10));
             setRecommendation1Page(2);
         }
     };
 
     const handlePrevRecommendation1 = () => {
         if (recommendation1Page === 2) {
-            setRecommendation1Contents(initialContents.slice(0, 5));
+            setRecommendation1Contents(allRecommendation1Contents.slice(0, 5));
             setRecommendation1Page(1);
         }
     };
 
-    const [recommendation2Contents, setRecommendation2Contents] = useState(initialContents.slice(0, 5));
-    const [recommendation2Page, setRecommendation2Page] = useState(1);
-
     const handleNextRecommendation2 = () => {
         if (recommendation2Page === 1) {
-            setRecommendation2Contents(initialContents.slice(5, 10));
+            setRecommendation2Contents(allRecommendation2Contents.slice(5, 10));
             setRecommendation2Page(2);
         }
     };
 
     const handlePrevRecommendation2 = () => {
         if (recommendation2Page === 2) {
-            setRecommendation2Contents(initialContents.slice(0, 5));
+            setRecommendation2Contents(allRecommendation2Contents.slice(0, 5));
             setRecommendation2Page(1);
         }
     };
@@ -50,19 +76,11 @@ const Kids = () => {
         fetch('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/kids/top')
             .then(response => response.json())
             .then(data => {
-                console.log('Fetched data:', data);
                 setAllPopularContents(data);
                 setPopularContents(data.slice(0, 5)); // 첫 5개 아이템을 초기값으로 설정
             })
             .catch(error => console.error('Error fetching data:', error));
     }, []);
-
-    const navigate = useNavigate();
-
-    const handleImageClick = (vodId) => {
-        console.log('Clicked vodID:', vodId);
-        navigate(`/vod-detail/${vodId}`);
-    };
 
     const handleNextPopular = () => {
         if (popularPage === 1) {
@@ -117,8 +135,8 @@ const Kids = () => {
                             )}
                         </div>
                         {recommendation1Contents.map((content, index) => (
-                            <div key={index} className="content-box">
-                                {content}
+                            <div key={index} className="content-box" onClick={() => handleImageClick(content.id)}>
+                                <img src={content.vodPoster} alt={`Content ${index + 1}`} className="content-image" />
                             </div>
                         ))}
                         <div className="content-arrow-container right">
@@ -141,8 +159,8 @@ const Kids = () => {
                             )}
                         </div>
                         {recommendation2Contents.map((content, index) => (
-                            <div key={index} className="content-box">
-                                {content}
+                            <div key={index} className="content-box" onClick={() => handleImageClick(content.id)}>
+                                <img src={content.vodPoster} alt={`Content ${index + 1}`} className="content-image" />
                             </div>
                         ))}
                         <div className="content-arrow-container right">
