@@ -18,6 +18,11 @@ const Layout = () => {
         }
     };
 
+    const handleSearchContainerClick = () => {
+            navigate(`/search`);
+        
+    };
+
     const handleKeyPress = (e) => {
         if (e.key === 'Enter') {
             handleSearch();
@@ -32,7 +37,7 @@ const Layout = () => {
         <div className="layout">
             <div className="layout-sidebar">
                 <img src={logo} alt="Logo" className="layout-logo" onClick={() => navigate('/mainpage')} />
-                <div className="search-container">
+                <div className="search-container" onClick={handleSearchContainerClick}>
                     <input 
                         type="text" 
                         placeholder="검색" 
@@ -40,6 +45,7 @@ const Layout = () => {
                         value={searchQuery} 
                         onChange={handleSearchInputChange}
                         onKeyPress={handleKeyPress}
+                        readOnly // 입력 불가능하도록 설정
                     />
                     <div className="layout-search-icon" onClick={handleSearch}></div>
                 </div>
