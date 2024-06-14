@@ -19,7 +19,7 @@ const SearchPage = () => {
     if (query) {
       const fetchData = async () => {
         try {
-          const response = await fetch(`http://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/search/${encodeURIComponent(query)}`);
+          const response = await fetch(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/search/${encodeURIComponent(query)}`);
           if (!response.ok) {
             throw new Error('Network response was not ok');
           }
