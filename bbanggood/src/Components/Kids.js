@@ -83,6 +83,30 @@ const Kids = () => {
             <div className="kids-page-container">
                 <h1 className="kids-page-title">키즈</h1>
                 <div className="kids-page-content-section">
+                    <h2>지금 인기있는 컨텐츠</h2>
+                    <div className="content-container">
+                        <div className="content-arrow-container left">
+                            {popularPage === 2 && (
+                                <div className="content-arrow" onClick={handlePrevPopular}>
+                                    ◀
+                                </div>
+                            )}
+                        </div>
+                        {popularContents.map((content, index) => (
+                            <div key={index} className="content-box" onClick={() => handleImageClick(content.vodId)}>
+                                <img src={content.vodPoster} alt={`Content ${index + 1}`} className="content-image" />
+                            </div>
+                        ))}
+                        <div className="content-arrow-container right">
+                            {popularPage === 1 && (
+                                <div className="content-arrow" onClick={handleNextPopular}>
+                                    ▶
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+                <div className="kids-page-content-section">
                     <h2>추천 1</h2>
                     <div className="content-container">
                         <div className="content-arrow-container left">
@@ -124,30 +148,6 @@ const Kids = () => {
                         <div className="content-arrow-container right">
                             {recommendation2Page === 1 && (
                                 <div className="content-arrow" onClick={handleNextRecommendation2}>
-                                    ▶
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                </div>
-                <div className="kids-page-content-section">
-                    <h2>지금 인기있는 컨텐츠</h2>
-                    <div className="content-container">
-                        <div className="content-arrow-container left">
-                            {popularPage === 2 && (
-                                <div className="content-arrow" onClick={handlePrevPopular}>
-                                    ◀
-                                </div>
-                            )}
-                        </div>
-                        {popularContents.map((content, index) => (
-                            <div key={index} className="content-box" onClick={() => handleImageClick(content.vodId)}>
-                                <img src={content.vodPoster} alt={`Content ${index + 1}`} className="content-image" />
-                            </div>
-                        ))}
-                        <div className="content-arrow-container right">
-                            {popularPage === 1 && (
-                                <div className="content-arrow" onClick={handleNextPopular}>
                                     ▶
                                 </div>
                             )}
