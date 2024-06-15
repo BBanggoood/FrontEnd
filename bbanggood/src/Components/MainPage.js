@@ -3,27 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../CSS/MainPage.css';
 
 const MainPage = () => {
-    const initialContents = [
-        "Content 1", "Content 2", "Content 3", "Content 4", "Content 5",
-        "Content 6", "Content 7", "Content 8", "Content 9", "Content 10"
-    ];
-
-    const [displayedContents, setDisplayedContents] = useState(initialContents.slice(0, 5));
-    const [currentContentPage, setCurrentContentPage] = useState(1);
-
-    const handleNextContents = () => {
-        if (currentContentPage === 1) {
-            setDisplayedContents(initialContents.slice(5, 10));
-            setCurrentContentPage(2);
-        }
-    };
-
-    const handlePrevContents = () => {
-        if (currentContentPage === 2) {
-            setDisplayedContents(initialContents.slice(0, 5));
-            setCurrentContentPage(1);
-        }
-    };
+    const navigate = useNavigate();
 
     const [popularContents, setPopularContents] = useState([]);
     const [popularPage, setPopularPage] = useState(1);
@@ -38,8 +18,6 @@ const MainPage = () => {
             })
             .catch(error => console.error('Error fetching data:', error));
     }, []);
-
-    const navigate = useNavigate();
 
     const handleImageClick = (vodId) => {
         navigate(`/vod-detail/${vodId}`);
@@ -129,30 +107,6 @@ const MainPage = () => {
                     </div>
                     <div className="banner-pagination">
                         {currentBannerIndex + 1} / {banners.length}
-                    </div>
-                </div>
-                <div className="main-page-content-section">
-                    <h2>이어보기</h2>
-                    <div className="content-container">
-                        <div className="content-arrow-container left">
-                            {currentContentPage === 2 && (
-                                <div className="content-arrow" onClick={handlePrevContents}>
-                                    ◀
-                                </div>
-                            )}
-                        </div>
-                        {displayedContents.map((content, index) => (
-                            <div key={index} className="content-box">
-                                {content}
-                            </div>
-                        ))}
-                        <div className="content-arrow-container right">
-                            {currentContentPage === 1 && (
-                                <div className="content-arrow" onClick={handleNextContents}>
-                                    ▶
-                                </div>
-                            )}
-                        </div>
                     </div>
                 </div>
                 <div className="main-page-content-section">

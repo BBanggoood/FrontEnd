@@ -16,7 +16,9 @@ const VodDetailPage = () => {
 
         // VOD별로 로컬 스토리지에서 찜 상태 불러오기
         const storedIsAdded = localStorage.getItem(`isAddedToBreadList_${vodId}`);
+        console.log('Stored isAddedToBreadList:', storedIsAdded); // 로컬 스토리지 값 확인
         setIsAddedToBreadList(storedIsAdded === 'true');
+        console.log('State isAddedToBreadList:', storedIsAdded === 'true'); // 상태 업데이트 확인
 
         // vodId를 사용하여 VOD 상세 정보를 요청
         if (vodId) {
@@ -49,6 +51,7 @@ const VodDetailPage = () => {
 
         if (!isAddedToBreadList) {
             try {
+                console.log("시도");
                 const response = await axios.post('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/vod', {
                     setbxId: parseInt(setbxId, 10),
                     vodId: vodId,
@@ -57,6 +60,7 @@ const VodDetailPage = () => {
                 console.log('VOD added to BreadList:', response.data);
                 setIsAddedToBreadList(true);
                 localStorage.setItem(`isAddedToBreadList_${vodId}`, 'true'); // 로컬 스토리지에 찜 상태 저장
+                console.log("로그 저장 시도");
 
                 const confirmation = window.confirm('[VOD] 빵 목록에 추가되었습니다. 빵 목록으로 이동하시겠습니까?');
                 if (confirmation) {    
