@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../CSS/MyPage.css';
 import logo from '../images/BBanggood_logo_white_line.png'; // 기존 로고
-import profileImage from '../images/호빵맨.png'; // 새로운 프로필 이미지
+import profileImage from '../images/bbanggood_pixel.png'; // 새로운 프로필 이미지
 
 const MyPage = () => {
     const navigate = useNavigate();
