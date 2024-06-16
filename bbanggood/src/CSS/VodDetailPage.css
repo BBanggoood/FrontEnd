@@ -71,7 +71,7 @@
 }
 
 .vod-title {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     font-weight: 400;
     font-size: 34px;
     line-height: 40px;
@@ -90,7 +90,7 @@
 .vod-director,
 .vod-cast,
 .vod-summary {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     font-weight: 400;
     font-size: 18px;
     line-height: 20px;

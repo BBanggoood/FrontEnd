@@ -39,7 +39,7 @@
     border: none;
     border-bottom: 2px solid #644A41;
     text-align: left;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans KR', serif;
     font-size: 16px;
     background: none; /* 배경 이미지 제거 */
     padding-left: 10px; /* 텍스트 입력 시작 위치 조정 */
@@ -64,7 +64,7 @@
 .layout-menu a {
     text-decoration: none;
     color: #000;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans KR', serif;
     font-size: 18px;
     padding: 18px 0;
     text-align: center;
@@ -109,6 +109,7 @@
     z-index: 1000;
 }
 
+/* 상단 카테고리 레이아웃 */
 .layout-topbar-menu {
     display: flex;
     justify-content: space-around;
@@ -119,7 +120,7 @@
 .layout-topbar a {
     text-decoration: none;
     color: #FFF;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     font-size: 18px;
     padding: 15px 0;
     margin: 0 10px;

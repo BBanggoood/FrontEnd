@@ -28,7 +28,7 @@
 }
 
 .main-page-banner-text {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     font-size: 48px;
     color: #000;
 }
@@ -54,7 +54,7 @@
     position: absolute;
     bottom: 10px;
     right: 10px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     font-size: 16px;
     color: #000;
     background: rgba(255, 255, 255, 0.7);
@@ -67,7 +67,7 @@
 }
 
 .main-page-content-section h2 {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     font-size: 36px;
     color: #000;
     text-align: left;
@@ -94,7 +94,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     overflow: hidden; /* 이미지가 박스 밖으로 나가지 않도록 */
 }
 

@@ -32,7 +32,7 @@
 }
 
 .my-page-header h2 {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     font-size: 36px; /* 글꼴 크기 조정 */
     color: #FFF;
     margin-right: 50px;
@@ -62,7 +62,7 @@
 }
 
 .info-text {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     font-size: 20px; /* 글꼴 크기 조정 */
     color: #000;
     margin: 5px 0; /* 간격 조정 */
@@ -90,7 +90,7 @@
     background: #FFE5B6;
     border-radius: 20px;
     border: none;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     font-size: 20px; /* 글꼴 크기 조정 */
     color: #000;
     margin: 2px 0; /* 간격 조정 */
