@@ -37,7 +37,7 @@
 }
 
 .input-group label {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px; /* 폰트 크기 감소 */
@@ -80,7 +80,7 @@
     color: white;
     border: none;
     border-radius: 20px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     font-size: 14px; /* 폰트 크기 조정 */
     cursor: pointer;
     transition: background-color 0.3s;
@@ -102,7 +102,7 @@
     color: white;
     border: none;
     border-radius: 20px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     font-size: 16px; /* 폰트 크기 조정 */
     cursor: pointer;
     transition: background-color 0.3s;

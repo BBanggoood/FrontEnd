@@ -91,7 +91,7 @@
     color: white;
     border: none;
     border-radius: 20px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     font-size: 24px; /* 폰트 크기 1.5배 증가 */
     cursor: pointer;
     transition: background-color 0.3s;

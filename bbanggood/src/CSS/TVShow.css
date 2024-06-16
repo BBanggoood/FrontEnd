@@ -14,7 +14,7 @@
 }
 
 .tvshow-page-title {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     font-size: 48px;
     color: #000;
     margin-bottom: 40px;
@@ -25,7 +25,7 @@
 }
 
 .tvshow-page-content-section h2 {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     font-size: 36px;
     color: #000;
     text-align: left;
@@ -52,7 +52,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     overflow: hidden; /* 박스 내부 넘침 숨기기 */
     position: relative; /* 상대 위치 */
 }
