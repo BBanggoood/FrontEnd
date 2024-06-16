@@ -31,7 +31,7 @@
 }
 
 .adult-verification-title {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     font-size: 32px;
     color: #000;
 }
@@ -54,14 +54,14 @@
 }
 
 .adult-verification-form p {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     font-size: 24px;
     color: #FFF;
     margin-bottom: 20px;
 }
 
 .adult-verification-form label {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     font-size: 20px;
     color: #FFF;
     margin: 10px 0;
@@ -81,7 +81,7 @@
     background-color: #FFE5B6;
     border: none;
     border-radius: 10px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     font-size: 20px;
     color: #000;
     cursor: pointer;
