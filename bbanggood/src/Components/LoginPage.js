@@ -11,7 +11,7 @@ const LoginPage = () => {
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/login', {
+            const response = await axios.post('http://localhost:7300/login', {
                 username,
                 password
             }, {

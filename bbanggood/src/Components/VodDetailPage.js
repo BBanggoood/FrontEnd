@@ -52,7 +52,7 @@ const VodDetailPage = () => {
         if (!isAddedToBreadList) {
             try {
                 console.log("시도");
-                const response = await axios.post('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/vod', {
+                const response = await axios.post('http://localhost:7100/bbang/vod', {
                     setbxId: parseInt(setbxId, 10),
                     vodId: vodId,
                     vodPoster: vodData.vodPoster
@@ -72,7 +72,7 @@ const VodDetailPage = () => {
             }
         } else {
             try {
-                const response = await axios.delete('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/vod', {
+                const response = await axios.delete('http://localhost:7100/bbang/vod', {
                     data: {
                         setbxId: parseInt(setbxId, 10),
                         vodId: vodId

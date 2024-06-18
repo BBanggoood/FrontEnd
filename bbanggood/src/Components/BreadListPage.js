@@ -29,7 +29,7 @@ const BreadListPage = () => {
 
         const fetchVOD = async () => {
             try {
-                const response = await axios.get(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/vod/${setbxIdInt}`);
+                const response = await axios.get(`https://localhost:7000/bbang/vod/${setbxIdInt}`);
                 setVodList(response.data);
             } catch (error) {
                 console.error('Error fetching VOD data:', error);
@@ -38,7 +38,7 @@ const BreadListPage = () => {
 
         const fetchDirectors = async () => {
             try {
-                const response = await axios.get(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/director/${setbxIdInt}`);
+                const response = await axios.get(`https://localhost:7000/bbang/director/${setbxIdInt}`);
                 setDirectorsList(response.data);
             } catch (error) {
                 console.error('Error fetching directors data:', error);
@@ -47,7 +47,7 @@ const BreadListPage = () => {
 
         const fetchActors = async () => {
             try {
-                const response = await axios.get(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/cast/${setbxIdInt}`);
+                const response = await axios.get(`https://localhost:7000/bbang/cast/${setbxIdInt}`);
                 setActorsList(response.data);
             } catch (error) {
                 console.error('Error fetching actors data:', error);

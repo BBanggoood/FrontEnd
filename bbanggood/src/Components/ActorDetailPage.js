@@ -43,7 +43,7 @@ const ActorDetailPage = () => {
 
         if (!isAddedToBreadList) {
             try {
-                const response = await axios.post('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/cast', {
+                const response = await axios.post('http://localhost:7100/bbang/cast', {
                     setbxId: parseInt(setbxId, 10),
                     vodCast: name,
                     vodCastPoster: vodData.length > 0 ? vodData[0].vodPoster : ''
@@ -62,7 +62,7 @@ const ActorDetailPage = () => {
             }
         } else {
             try {
-                const response = await axios.delete('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/cast', {
+                const response = await axios.delete('http://localhost:7100/bbang/cast', {
                     data: {
                         setbxId: parseInt(setbxId, 10),
                         vodCast: name
