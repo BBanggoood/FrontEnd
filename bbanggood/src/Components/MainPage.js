@@ -110,7 +110,7 @@ const MainPage = () => {
                     </div>
                 </div>
                 <div className="main-page-content-section">
-                    <h2>지금 인기있는 컨텐츠</h2>
+                    <h2>지금 인기 있는 컨텐츠</h2>
                     <div className="content-container">
                         <div className="content-arrow-container left">
                             {popularPage === 2 && (

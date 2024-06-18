@@ -3,7 +3,7 @@
     background-color: #FFF6F1;
 }
 
-/* 주황 배경 */
+/* 주황 배경 - 배경 색 없앰 */
 .main-page-container {
     width: 1282px;
     border-radius: 40px;
@@ -27,6 +27,7 @@
     margin: -38px 0 20px -32px; /* 왼쪽 맞춤을 위해 margin 수정 */
 }
 
+/* 메인 페이지 배너 텍스트 */
 .main-page-banner-text {
     font-family: 'IBM Plex Sans KR', sans-serif;
     font-size: 48px;
@@ -50,6 +51,7 @@
     right: 20px; /* 화살표 위치 조정 */
 }
 
+/* 배너 페이지 수(1/5) */
 .banner-pagination {
     position: absolute;
     bottom: 10px;
@@ -62,13 +64,17 @@
     border-radius: 15px;
 }
 
+/* 콘텐츠 추천 */
 .main-page-content-section {
     margin-bottom: 20px;
+    width: 100%;
+    height: 1500%;
 }
 
+/* 콘텐츠 추천 폰트 */
 .main-page-content-section h2 {
     font-family: 'IBM Plex Sans KR', sans-serif;
-    font-size: 36px;
+    font-size: 28px;
     color: #000;
     text-align: left;
     margin-left: 20px;
@@ -84,6 +90,7 @@
     box-sizing: border-box; /* 패딩과 보더를 포함한 박스 크기 계산 */
 }
 
+/* 포스터 크기 */
 .content-box {
     width: 190px; /* 콘텐츠 박스 크기 증가 */
     height: 240px; /* 콘텐츠 박스 크기 증가 */
@@ -98,6 +105,7 @@
     overflow: hidden; /* 이미지가 박스 밖으로 나가지 않도록 */
 }
 
+/* 들어오는 포스터 URL */
 .content-box img {
     width: 100%;
     height: 100%;
