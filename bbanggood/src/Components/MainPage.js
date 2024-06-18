@@ -2,6 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../CSS/MainPage.css';
 
+// 이미지 import
+import insideOut2 from '../images/인사이드아웃2.png';
+import wonka from '../images/웡카.png';
+import pamyo from '../images/파묘.png';
+import avengers from '../images/어벤져스.png';
+import bestBaseball from '../images/최강야구.png';
+
 const MainPage = () => {
     const navigate = useNavigate();
 
@@ -78,13 +85,15 @@ const MainPage = () => {
     };
 
     const banners = [
-        '배너 광고 1',
-        '배너 광고 2',
-        '배너 광고 3',
-        '배너 광고 4',
-        '배너 광고 5'
+        { image: insideOut2, trailer: 'https://bbanggoood-front.s3.ap-northeast-2.amazonaws.com/%EC%9D%B8%EC%82%AC%EC%9D%B4%EB%93%9C+%EC%95%84%EC%9B%832+%EC%98%88%EA%B3%A0%ED%8E%B8.mp4' },
+        { image: wonka, trailer: 'https://bbanggoood-front.s3.ap-northeast-2.amazonaws.com/%EC%9B%A1%EC%B9%B4+%EC%98%88%EA%B3%A0%ED%8E%B8.mp4' },
+        { image: pamyo, trailer: 'https://bbanggoood-front.s3.ap-northeast-2.amazonaws.com/%ED%8C%8C%EB%AC%98+%EC%98%88%EA%B3%A0%ED%8E%B8.mp4' },
+        { image: avengers, trailer: 'https://bbanggoood-front.s3.ap-northeast-2.amazonaws.com/%EC%96%B4%EB%B2%A4%EC%A0%B8%EC%8A%A4+%EC%97%94%EB%93%9C%EA%B2%8C%EC%9E%84+%EC%98%88%EA%B3%A0%ED%8E%B8.mp4' },
+        { image: bestBaseball, trailer: 'https://bbanggoood-front.s3.ap-northeast-2.amazonaws.com/%EC%B5%9C%EA%B0%95%EC%95%BC%EA%B5%AC+%EC%98%88%EA%B3%A0%ED%8E%B8.mp4' }
     ];
     const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
+    const [isHovered, setIsHovered] = useState(false);
+    const [hoverTimeout, setHoverTimeout] = useState(null);
 
     const handleNextBanner = () => {
         setCurrentBannerIndex((prevIndex) => (prevIndex + 1) % banners.length);
@@ -94,6 +103,18 @@ const MainPage = () => {
         setCurrentBannerIndex((prevIndex) => (prevIndex - 1 + banners.length) % banners.length);
     };
 
+    const handleMouseEnter = () => {
+        const timeout = setTimeout(() => {
+            setIsHovered(true);
+        }, 1000); // 1초로 변경
+        setHoverTimeout(timeout);
+    };
+
+    const handleMouseLeave = () => {
+        clearTimeout(hoverTimeout);
+        setIsHovered(false);
+    };
+
     return (
         <div className="main-page">
             <div className="main-page-container">
@@ -101,7 +122,26 @@ const MainPage = () => {
                     <div className="banner-arrow left-arrow" onClick={handlePrevBanner}>
                         ◀
                     </div>
-                    <div className="main-page-banner-text">{banners[currentBannerIndex]}</div>
+                    <div
+                        className="main-page-banner-image"
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                    >
+                        {!isHovered && (
+                            <img src={banners[currentBannerIndex].image} alt={`Banner ${currentBannerIndex + 1}`} />
+                        )}
+                        {isHovered && (
+                            <iframe
+                                width="100%"
+                                height="100%"
+                                src={`${banners[currentBannerIndex].trailer}?autoplay=1&controls=0&showinfo=0&modestbranding=1&rel=0&vq=hd720`}
+                                title={`Trailer ${currentBannerIndex + 1}`}
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            ></iframe>
+                        )}
+                    </div>
                     <div className="banner-arrow right-arrow" onClick={handleNextBanner}>
                         ▶
                     </div>
