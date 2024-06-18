@@ -35,10 +35,11 @@ const Layout = () => {
 
     return (
         <div className="layout">
+            {/* 왼쪽 */}
             <div className="layout-sidebar">
-                <img src={logo} alt="Logo" className="layout-logo" onClick={() => navigate('/mainpage')} />
+                {/* 검색 버튼 */}
                 <div className="search-container" onClick={handleSearchContainerClick}>
-                    <input 
+                    {/* <input 
                         type="text" 
                         placeholder="검색" 
                         className="layout-search" 
@@ -46,9 +47,10 @@ const Layout = () => {
                         onChange={handleSearchInputChange}
                         onKeyPress={handleKeyPress}
                         readOnly // 입력 불가능하도록 설정
-                    />
+                    /> */}
                     <div className="layout-search-icon" onClick={handleSearch}></div>
                 </div>
+                {/* 영화 카테고리 */}
                 <div className="layout-menu">
                     <Link to="/kids" className={getLinkClass('/kids')}>키즈</Link>
                     <Link to="/drama" className={getLinkClass('/drama')}>드라마</Link>
@@ -58,9 +60,13 @@ const Layout = () => {
                     <Link to="/adult" className={getLinkClass('/adult')}>성인</Link>
                 </div>
             </div>
+            {/* 상단 */}
             <div className="layout-topbar">
+                {/* 메인 카테고리 */}
+                {/* 로고 */}
                 <div className="layout-topbar-menu">
-                    <Link to="/mainpage" className="bold">메인페이지</Link>
+                    <img src={logo} alt="Logo" className="layout-logo" onClick={() => navigate('/mainpage')} />
+                    <Link to="/mainpage" className="bold">&nbsp;&nbsp;&nbsp;&nbsp;메인페이지</Link>
                     <Link to="/schedule">일정</Link>
                     <Link to="/bread-list">빵 목록</Link>
                     <Link to="/mypage">마이페이지</Link>

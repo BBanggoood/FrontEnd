@@ -5,25 +5,28 @@
     background-color: #FFF6F1;
 }
 
+/* 사이드 카테고리 레이아웃 */
+/* 왼쪽 width 여기서 바꾸면 됨 */
 .layout-sidebar {
-    width: 220px;
+    width: 70px;
     background-color: #FFF6F1;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     position: fixed;
-    top: 0;
+    top: 70px;
     left: 0;
     height: 100%;
     z-index: 1001;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
+/* 메인 로고 레이아웃 */
 .layout-logo {
-    width: 230px;
-    height: 140px;
-    margin-bottom: 20px;
+    width: 100px;
+    height: 60px;
+    align-self: center;
     cursor: pointer; /* 로고 클릭 가능하게 설정 */
 }
 
@@ -34,8 +37,8 @@
 }
 
 .layout-search {
-    width: 140px;
-    padding: 8px 0;
+    width: 50px;
+    /* padding: 8px 0; */
     border: none;
     border-bottom: 2px solid #644A41;
     text-align: left;
@@ -43,7 +46,7 @@
     font-size: 16px;
     background: none; /* 배경 이미지 제거 */
     padding-left: 10px; /* 텍스트 입력 시작 위치 조정 */
-    padding-right: 40px; /* 오른쪽 여백 추가 */
+    padding-right: 10px; /* 오른쪽 여백 추가 */
 }
 
 .layout-search-icon {
@@ -52,15 +55,17 @@
     background: url('../images/search-icon.png') no-repeat center center;
     background-size: 20px;
     cursor: pointer;
-    margin-left: -30px;
+    /* margin-left: -30px; */
 }
 
+/* 왼쪽 영화 카테고리 */
 .layout-menu {
     display: flex;
     flex-direction: column;
     width: 90%;
 }
 
+/* 왼쪽 영화 카테고리 글자 */
 .layout-menu a {
     text-decoration: none;
     color: #000;
@@ -69,14 +74,15 @@
     padding: 18px 0;
     text-align: center;
     margin: 5px 0;
-    background-color: #FFF;
-    border: 2px solid #644A41;
-    border-radius: 30px;
+    /* background-color: #FFF; */
+    /* border: 2px solid #644A41; */
+    /* border-radius: 30px; */
     transition: background-color 0.3s, color 0.3s;
     position: relative; /* 가상 요소 위치를 위해 relative 설정 */
     z-index: 1; /* 텍스트를 위로 보이게 설정 */
 }
 
+/* 왼쪽 영화 카테고리 레이아웃 -> 얘로 안 바뀐다 */
 .layout-menu a::before {
     content: '';
     position: absolute;
@@ -91,60 +97,68 @@
     transition: opacity 0.3s;
 }
 
-.layout-menu a:hover::before,
-.layout-menu a.active-link::before {
-    opacity: 1; /* 배경이 보이도록 설정 */
+/* 왼쪽 카테고리에 마우스 오버하는 경우 */
+.layout-menu a:hover/*::before,
+.layout-menu a.active-link::before*/ {
+    /* opacity: 1; 배경이 보이도록 설정 */
+    color: #00000085;
 }
 
+/* 상단 메인 카테고리 위치 */
 .layout-topbar {
     display: flex;
     justify-content: center;
     background-color: #FFF6F1;
-    width: calc(100% - 220px);
+    /* width: calc(100% - 220px); */
+    width: 100%;
     padding: 20px 0;
     position: fixed;
-    top: 20px;
-    left: 220px;
-    height: 90px;
+    top: 0px;
+    /* left: 220px; */
+    height: 30px;
     z-index: 1000;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
-/* 상단 카테고리 레이아웃 */
+/* 상단 메인 카테고리 레이아웃 */
 .layout-topbar-menu {
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     width: 100%;
-    max-width: 1100px;
+    max-width: 1500px;
 }
 
+/* 상단 메인 카테고리 글자 */
 .layout-topbar a {
     text-decoration: none;
-    color: #FFF;
+    color: #000000;
     font-family: 'IBM Plex Sans KR', sans-serif;
     font-size: 18px;
     padding: 15px 0;
     margin: 0 10px;
-    background-color: #936C5E;
+    /* background-color: #936C5E; */
     border-radius: 30px;
     transition: background-color 0.3s;
-    width: 156px; /* 모든 버튼의 너비를 동일하게 설정 */
+    width: 100px; /* 모든 버튼의 너비를 동일하게 설정 */
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center; /* 텍스트 중앙 정렬 */
 }
 
+/* 상단 메인 카테고리 마우스 오버 시 */
 .layout-topbar a:hover {
-    background-color: #644A41;
+    color: #0000006b;
 }
 
+/* 메인(콘텐츠) 영역 */
 .layout-main-content {
-    margin-top: 80px;
+    margin-top: 30px;
     margin-left: 240px;
     padding: 20px;
     flex-grow: 1;
     background-color: #FFF6F1;
     height: calc(100% - 80px);
     overflow-y: auto; /* 메인 콘텐츠 영역에만 스크롤이 있도록 설정 */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
 }
