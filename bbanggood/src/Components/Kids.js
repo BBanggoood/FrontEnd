@@ -14,7 +14,7 @@ const Kids = () => {
     useEffect(() => {
         const setbxId = localStorage.getItem('setbxId');
         if (setbxId) {
-            fetch('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/recommend/kids', {
+            fetch('http://localhost:7400/recommend/kids', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ const Kids = () => {
     const [allPopularContents, setAllPopularContents] = useState([]);
 
     useEffect(() => {
-        fetch('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/kids/top')
+        fetch('http://localhost:7200/contents/kids/top')
             .then(response => response.json())
             .then(data => {
                 setAllPopularContents(data);

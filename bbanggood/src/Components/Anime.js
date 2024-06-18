@@ -14,7 +14,7 @@ const Anime = () => {
     useEffect(() => {
         const setbxId = localStorage.getItem('setbxId');
         if (setbxId) {
-            fetch('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/recommend/animation', {
+            fetch('http://localhost:7400/recommend/animation', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ const Anime = () => {
     const [allPopularContents, setAllPopularContents] = useState([]);
 
     useEffect(() => {
-        fetch('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/animation/top')
+        fetch('http://localhost:7200/contents/animation/top')
             .then(response => response.json())
             .then(data => {
                 setAllPopularContents(data);

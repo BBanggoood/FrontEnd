@@ -22,7 +22,7 @@ const VodDetailPage = () => {
 
         // vodId를 사용하여 VOD 상세 정보를 요청
         if (vodId) {
-            fetch(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/detail/vod/${vodId}`)
+            fetch(`http://localhost:7200/contents/detail/vod/${vodId}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');

@@ -25,7 +25,7 @@ const DirectorDetailPage = () => {
         setIsAddedToBreadList(storedIsAdded === 'true');
 
         // 감독 이름을 사용하여 VOD 정보를 요청
-        fetch(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/detail/director/${encodeURIComponent(name)}`)
+        fetch(`http://localhost:7200/contents/detail/director/${encodeURIComponent(name)}`)
             .then(response => response.json())
             .then(data => {
                 console.log('Fetched director VOD details:', data); // 데이터 확인을 위한 콘솔 로그

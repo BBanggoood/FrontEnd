@@ -34,7 +34,7 @@ const SchedulePage = () => {
     const startOfMonth = new Date(date.getFullYear(), date.getMonth(), 1).toISOString();
     const endOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0, 23, 59, 59, 999).toISOString();
     try {
-      const response = await axios.get(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/calender?start=${startOfMonth}&end=${endOfMonth}`);
+      const response = await axios.get(`http://localhost:7200/contents/calender?start=${startOfMonth}&end=${endOfMonth}`);
       setVods(response.data);
     } catch (error) {
       console.error('There was an error fetching the VODs!', error);
@@ -47,7 +47,7 @@ const SchedulePage = () => {
     const endOfDay = new Date(date.setHours(23, 59, 59, 999)).toISOString();
     
     try {
-      const response = await axios.get(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/calender?start=${startOfDay}&end=${endOfDay}`);
+      const response = await axios.get(`http://localhost:7200/contents/calender?start=${startOfDay}&end=${endOfDay}`);
       if (response.data.length > 0) {
         const movie = response.data[0];
         setMovieInfo({
@@ -134,34 +134,7 @@ const SchedulePage = () => {
             />
           </div>
         </div>
-        {/* <div className="schedule-page-timetable">
-          <h2>편성표</h2>
-          <table className="timetable">
-            <thead>
-              <tr>
-                <th>월</th>
-                <th>화</th>
-                <th>수</th>
-                <th>목</th>
-                <th>금</th>
-                <th>토</th>
-                <th>일</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>콘텐츠</td>
-                <td>콘텐츠</td>
-                <td>콘텐츠</td>
-                <td>콘텐츠</td>
-                <td>콘텐츠</td>
-                <td>콘텐츠</td>
-                <td>콘텐츠</td>
-              </tr>
-            </tbody>
-          </table>
-        </div> */}
-<div className="schedule-page-birthday-movie">
+        <div className="schedule-page-birthday-movie">
           <h2>내 생일에 개봉한 영화는?</h2>
           <div className="birthday-movie-inputs">
             <input type="text" placeholder="년" value={year} onChange={(e) => setYear(e.target.value)} />

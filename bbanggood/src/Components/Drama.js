@@ -14,7 +14,7 @@ const Drama = () => {
     useEffect(() => {
         const setbxId = localStorage.getItem('setbxId');
         if (setbxId) {
-            fetch('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/recommend/drama', {
+            fetch('http://localhost:7400/recommend/drama', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ const Drama = () => {
     const [allPopularContents, setAllPopularContents] = useState([]);
 
     useEffect(() => {
-        fetch('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/drama/top')
+        fetch('http://localhost:7200/contents/drama/top')
             .then(response => response.json())
             .then(data => {
                 setAllPopularContents(data);
