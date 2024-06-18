@@ -5,12 +5,8 @@
 
 .drama-page-container {
     width: 1200px;
-    /* background: #FFE3B0; */
-    /* border-radius: 40px; */
-    /* padding: 20px; */
     margin: 20px auto;
     opacity: 0.9;
-    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
 }
 
 .drama-page-title {
@@ -35,51 +31,51 @@
 .content-container {
     display: flex;
     align-items: center;
-    justify-content: center; /* 각 콘텐츠 박스를 중앙에 정렬 */
+    justify-content: center;
     width: 100%;
     padding: 20px;
-    position: relative; /* 상대 위치 */
-    box-sizing: border-box; /* 패딩과 보더를 포함한 박스 크기 계산 */
+    position: relative;
+    box-sizing: border-box;
 }
 
 .content-box {
-    width: 190px; /* 콘텐츠 박스 크기 증가 */
-    height: 240px; /* 콘텐츠 박스 크기 증가 */
-    background: #FFF;
-    border-radius: 20px;
-    margin: 0 10px; /* 각 박스 사이에 동일한 간격 */
+    width: 320px !important; /* 기존 190px에서 50px 증가 */
+    height: 280px !important; /* 기존 240px에서 50px 증가 */
+    /* background: #FFF; */
+    border-radius: 10px !important;
+    margin: 0 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'IBM Plex Sans KR', sans-serif;
-    overflow: hidden; /* 박스 내부 넘침 숨기기 */
-    position: relative; /* 상대 위치 */
+    overflow: hidden;
+    position: relative;
 }
 
 .content-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* 이미지 크기를 박스에 맞추기 */
-    position: absolute; /* 이미지가 박스 내부에 고정되도록 설정 */
-    top: 0; /* 상단에서 시작 */
-    left: 0; /* 왼쪽에서 시작 */
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .content-arrow-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px; /* 화살표 컨테이너 너비 */
-    box-sizing: border-box; /* 패딩과 보더를 포함한 박스 크기 계산 */
+    width: 40px;
+    box-sizing: border-box;
 }
 
 .content-arrow-container.left {
-    margin-left: 20px; /* 왼쪽 화살표 컨테이너 간격 조정 */
+    margin-left: 20px;
 }
 
 .content-arrow-container.right {
-    margin-right: 20px; /* 오른쪽 화살표 컨테이너 간격 조정 */
+    margin-right: 20px;
 }
 
 .content-arrow {
