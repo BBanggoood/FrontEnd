@@ -29,7 +29,7 @@ const LoginPage = () => {
             if (response.status === 200) {
                 localStorage.setItem('setbxId', username);
 
-                const token = response.headers['x-amzn-Remapped-Authorization']; // JWT 토큰 추출
+                const token = response.headers['x-amzn-remapped-authorization'] || response.headers['authorization']; // JWT 토큰 추출
                 if (token) {
                     localStorage.setItem('jwtToken', token); // JWT 토큰 로컬 스토리지에 저장
                 }
