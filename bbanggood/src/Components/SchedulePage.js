@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // useNavigate 추가
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import '../CSS/SchedulePage.css';
@@ -14,6 +15,8 @@ const SchedulePage = () => {
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
   const [day, setDay] = useState('');
+
+  const navigate = useNavigate(); // useNavigate 훅 사용하여 navigate 정의
 
   useEffect(() => {
     fetchVodsForMonth(currentMonth);
@@ -53,7 +56,8 @@ const SchedulePage = () => {
           director: `감독: ${movie.vodDirector}`,
           cast: `출연진: ${movie.vodCast}`,
           // synopsis: `줄거리: ${movie.vodSummary}`,
-          poster: movie.vodPoster
+          poster: movie.vodPoster,
+          vodId: movie.vodId, // vodId 추가
         });
       } else {
         alert('해당 날짜에 개봉한 영화가 없습니다.');
@@ -106,6 +110,10 @@ const SchedulePage = () => {
       }
     }
     return null;
+  };
+
+  const handlePosterClick = (vodId) => {
+    navigate(`/vod-detail/${vodId}`);
   };
 
   return (
@@ -185,7 +193,7 @@ const SchedulePage = () => {
               </div>
             )}
             {movieInfo && movieInfo.poster && (
-              <div className="movie-poster">
+              <div className="movie-poster" onClick={() => handlePosterClick(movieInfo.vodId)}>
                 <img src={movieInfo.poster} alt="포스터" />
               </div>
             )}
