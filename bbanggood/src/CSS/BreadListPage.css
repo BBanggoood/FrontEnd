@@ -5,12 +5,12 @@
 
 .bread-list-page-container {
     width: 1082px;
-    background: #FFE3B0;
+    /* background: #FFE3B0; */
     border-radius: 40px;
     padding: 20px;
     margin: 20px auto;
     opacity: 0.9;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
 }
 
 .bread-list-section {
@@ -38,7 +38,7 @@
 .bread-content-box-container {
     position: relative;
     width: 1000px;
-    height: 299px; /* 높이도 1.3배로 증가 */
+    height: 350px; /* 높이도 1.3배로 증가 */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -46,9 +46,9 @@
 }
 
 .bread-content-box {
-    width: 158.6px; /* 1.3배로 증가 (122px * 1.3) */
-    height: 257.4px; /* 1.3배로 증가 (198px * 1.3) */
-    background: #B89079;
+    width: 207.4px; /* 1.3배로 증가 (122px * 1.3) */
+    height: 336.6px; /* 1.3배로 증가 (198px * 1.3) */
+    /* background: #B89079; */
     border-radius: 20px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     position: absolute;
@@ -61,8 +61,8 @@
 }
 
 .bread-content-box img {
-    width: 140.4px; /* 1.3배로 증가 (108px * 1.3) */
-    height: 228.8px; /* 1.3배로 증가 (176px * 1.3) */
+    width: 201.3; /* 1.3배로 증가 (108px * 1.3) */
+    height: 326.7px; /* 1.3배로 증가 (176px * 1.3) */
     border-radius: 20px;
 }
 

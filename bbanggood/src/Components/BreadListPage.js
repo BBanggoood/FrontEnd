@@ -21,15 +21,15 @@ const BreadListPage = () => {
         }
 
         // setbxId를 정수로 변환
-        const setbxIdInt = parseInt(setbxId, 10);
-        if (isNaN(setbxIdInt)) {
-            console.error('Invalid setbxId:', setbxId);
-            return;
-        }
+        // const setbxIdInt = parseInt(setbxId, 10);
+        // if (isNaN(setbxIdInt)) {
+        //     console.error('Invalid setbxId:', setbxId);
+        //     return;
+        // }
 
         const fetchVOD = async () => {
             try {
-                const response = await axios.get(`https://localhost:7000/bbang/vod/${setbxIdInt}`);
+                const response = await axios.get(`https://localhost:7000/bbang/vod/${setbxId}`);
                 setVodList(response.data);
             } catch (error) {
                 console.error('Error fetching VOD data:', error);
@@ -38,7 +38,7 @@ const BreadListPage = () => {
 
         const fetchDirectors = async () => {
             try {
-                const response = await axios.get(`https://localhost:7000/bbang/director/${setbxIdInt}`);
+                const response = await axios.get(`https://localhost:7000/bbang/director/${setbxId}`);
                 setDirectorsList(response.data);
             } catch (error) {
                 console.error('Error fetching directors data:', error);
@@ -47,7 +47,7 @@ const BreadListPage = () => {
 
         const fetchActors = async () => {
             try {
-                const response = await axios.get(`https://localhost:7000/bbang/cast/${setbxIdInt}`);
+                const response = await axios.get(`https://localhost:7000/bbang/cast/${setbxId}`);
                 setActorsList(response.data);
             } catch (error) {
                 console.error('Error fetching actors data:', error);

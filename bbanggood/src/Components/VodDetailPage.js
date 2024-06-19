@@ -104,7 +104,7 @@ const VodDetailPage = () => {
 
     return (
         <div className="vod-detail-page">
-            <div className="vod-detail-container">
+            <div className="vod-detail-container" style={{ backgroundImage: `url(${vodData.vodPoster})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="vod-info-container">
                     <div className="vod-image-container">
                         <img src={vodData.vodPoster} alt="VOD 이미지" className="vod-image" />
