@@ -51,7 +51,7 @@ const LoginPage = () => {
 
     const fetchAndStoreBBangVod = async (setbxId) => {
         try {
-            const response = await axios.get(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/vod/${setbxId}`, {
+            const response = await axios.get(`http://localhost:7000/bbang/vod/${setbxId}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
                 }
@@ -73,7 +73,7 @@ const LoginPage = () => {
 
     const fetchAndStoreBBangCast = async (setbxId) => {
         try {
-            const response = await axios.get(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/cast/${setbxId}`, {
+            const response = await axios.get(`http://localhost:7000/bbang/cast/${setbxId}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
                 }
@@ -95,7 +95,7 @@ const LoginPage = () => {
 
     const fetchAndStoreBBangDirector = async (setbxId) => {
         try {
-            const response = await axios.get(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/director/${setbxId}`, {
+            const response = await axios.get(`http://localhost:7000/bbang/director/${setbxId}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
                 }
