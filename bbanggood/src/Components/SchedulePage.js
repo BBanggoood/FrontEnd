@@ -104,7 +104,7 @@ const SchedulePage = () => {
       if (vod) {
         return (
           <div className="date-tile">
-            <div className="date-text">{vod.vodName}</div>
+            <div className="date-text" onClick={() => handlePosterClick(vod.vodId)}>{vod.vodName}</div>
           </div>
         );
       }
