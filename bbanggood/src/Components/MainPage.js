@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import '../CSS/MainPage.css';
 
 // 이미지 import
@@ -91,6 +92,33 @@ const MainPage = () => {
     const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
     const [hoverTimeout, setHoverTimeout] = useState(null);
+    const autoSlideInterval = useRef(null);
+
+    useEffect(() => {
+        startAutoSlide();
+        return () => stopAutoSlide();
+    }, []);
+
+    useEffect(() => {
+        if (isHovered) {
+            stopAutoSlide();
+        } else {
+            startAutoSlide();
+        }
+    }, [isHovered]);
+
+    const startAutoSlide = () => {
+        stopAutoSlide(); // 중복 설정 방지
+        autoSlideInterval.current = setInterval(() => {
+            handleNextBanner();
+        }, 5000); // 5초마다 배너 전환
+    };
+
+    const stopAutoSlide = () => {
+        if (autoSlideInterval.current) {
+            clearInterval(autoSlideInterval.current);
+        }
+    };
 
     const handleNextBanner = () => {
         setCurrentBannerIndex((prevIndex) => (prevIndex + 1) % banners.length);
@@ -117,30 +145,39 @@ const MainPage = () => {
             <div className="main-page-container">
                 <div className="main-page-banner-ad">
                     <div className="banner-arrow left-arrow" onClick={handlePrevBanner}>
-                        ◀
+                        &lt;
                     </div>
-                    <div
-                        className="main-page-banner-image"
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                    >
-                        {!isHovered && (
-                            <img src={banners[currentBannerIndex].image} alt={`Banner ${currentBannerIndex + 1}`} />
-                        )}
-                        {isHovered && (
-                            <iframe
-                                width="100%"
-                                height="100%"
-                                src={`${banners[currentBannerIndex].trailer}?autoplay=1&controls=0&showinfo=0&modestbranding=1&rel=0&vq=hd720`}
-                                title={`Trailer ${currentBannerIndex + 1}`}
-                                frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                            ></iframe>
-                        )}
+                    <div className="banner-container">
+                        <TransitionGroup>
+                            <CSSTransition
+                                key={currentBannerIndex}
+                                classNames="banner-slide"
+                                timeout={2000} // 슬라이드 속도 조정 (2000ms = 2초)
+                            >
+                                <div 
+                                    className="banner-slide"
+                                    onMouseEnter={handleMouseEnter} 
+                                    onMouseLeave={handleMouseLeave}
+                                >
+                                    {!isHovered ? (
+                                        <img src={banners[currentBannerIndex].image} alt={`Banner ${currentBannerIndex + 1}`} />
+                                    ) : (
+                                        <iframe
+                                            width="100%"
+                                            height="100%"
+                                            src={`${banners[currentBannerIndex].trailer}?autoplay=1&controls=0&showinfo=0&modestbranding=1&rel=0&vq=hd720`}
+                                            title={`Trailer ${currentBannerIndex + 1}`}
+                                            frameBorder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen
+                                        ></iframe>
+                                    )}
+                                </div>
+                            </CSSTransition>
+                        </TransitionGroup>
                     </div>
                     <div className="banner-arrow right-arrow" onClick={handleNextBanner}>
-                        ▶
+                        &gt;
                     </div>
                     <div className="banner-pagination">
                         {currentBannerIndex + 1} / {banners.length}
