@@ -34,6 +34,11 @@ const LoginPage = () => {
                     localStorage.setItem('jwtToken', token); // JWT 토큰 로컬 스토리지에 저장
                 }
 
+                // 찜 목록, 캐스트, 디렉터 목록을 가져와 로컬 스토리지에 저장
+                await fetchAndStoreBBangVod(username);
+                await fetchAndStoreBBangCast(username);
+                await fetchAndStoreBBangDirector(username);
+
                 navigate('/mainpage');
             } else {
                 alert('로그인에 실패했습니다. 다시 시도해주세요.');
@@ -41,6 +46,72 @@ const LoginPage = () => {
         } catch (error) {
             console.error('로그인 중 오류가 발생했습니다.', error);
             alert('로그인 중 오류가 발생했습니다. 다시 시도해주세요.');
+        }
+    };
+
+    const fetchAndStoreBBangVod = async (setbxId) => {
+        try {
+            const response = await axios.get(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/vod/${setbxId}`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+                }
+            });
+
+            if (response.status === 200) {
+                const bbangList = response.data;
+                bbangList.forEach(vod => {
+                    const key = `isAddedToBreadList_${vod.vodId}`;
+                    localStorage.setItem(key, true);
+                });
+            } else {
+                console.error('찜 목록을 가져오지 못했습니다.');
+            }
+        } catch (error) {
+            console.error('찜 목록을 가져오는 중 오류가 발생했습니다.', error);
+        }
+    };
+
+    const fetchAndStoreBBangCast = async (setbxId) => {
+        try {
+            const response = await axios.get(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/cast/${setbxId}`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+                }
+            });
+
+            if (response.status === 200) {
+                const bbangCastList = response.data;
+                bbangCastList.forEach(cast => {
+                    const key = `isAddedToBreadList_cast_${cast.vodCast}`;
+                    localStorage.setItem(key, true);
+                });
+            } else {
+                console.error('캐스트 목록을 가져오지 못했습니다.');
+            }
+        } catch (error) {
+            console.error('캐스트 목록을 가져오는 중 오류가 발생했습니다.', error);
+        }
+    };
+
+    const fetchAndStoreBBangDirector = async (setbxId) => {
+        try {
+            const response = await axios.get(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/director/${setbxId}`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+                }
+            });
+
+            if (response.status === 200) {
+                const bbangDirectorList = response.data;
+                bbangDirectorList.forEach(director => {
+                    const key = `isAddedToBreadList_director_${director.vodDirector}`;
+                    localStorage.setItem(key, true);
+                });
+            } else {
+                console.error('디렉터 목록을 가져오지 못했습니다.');
+            }
+        } catch (error) {
+            console.error('디렉터 목록을 가져오는 중 오류가 발생했습니다.', error);
         }
     };
 
