@@ -25,11 +25,10 @@ const DirectorDetailPage = () => {
         setIsAddedToBreadList(storedIsAdded === 'true');
 
         // 감독 이름을 사용하여 VOD 정보를 요청
-        fetch(`http://localhost:7200/contents/detail/director/${encodeURIComponent(name)}`)
-            .then(response => response.json())
-            .then(data => {
-                console.log('Fetched director VOD details:', data); // 데이터 확인을 위한 콘솔 로그
-                setVodData(data);
+        axios.get(`http://localhost:7200/contents/detail/director/${encodeURIComponent(name)}`)
+            .then(response => {
+                console.log('Fetched director VOD details:', response.data); // 데이터 확인을 위한 콘솔 로그
+                setVodData(response.data);
             })
             .catch(error => console.error('Error fetching director VOD details:', error));
     }, [name]);

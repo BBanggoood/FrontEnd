@@ -22,16 +22,10 @@ const VodDetailPage = () => {
 
         // vodId를 사용하여 VOD 상세 정보를 요청
         if (vodId) {
-            fetch(`http://localhost:7200/contents/detail/vod/${vodId}`)
+            axios.get(`http://localhost:7200/contents/detail/vod/${vodId}`)
                 .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Fetched VOD details:', data); // 데이터 확인을 위한 콘솔 로그
-                    setVodData(data);
+                    console.log('Fetched VOD details:', response.data); // 데이터 확인을 위한 콘솔 로그
+                    setVodData(response.data);
                 })
                 .catch(error => console.error('Error fetching VOD details:', error));
         }

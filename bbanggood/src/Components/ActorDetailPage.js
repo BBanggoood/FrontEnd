@@ -25,11 +25,10 @@ const ActorDetailPage = () => {
         setIsAddedToBreadList(storedIsAdded === 'true');
 
         // 출연진 이름을 사용하여 VOD 정보를 요청
-        fetch(`http://localhost:7200/contents/detail/cast/${encodeURIComponent(name)}`)
-            .then(response => response.json())
-            .then(data => {
-                console.log('Fetched actor VOD details:', data); // 데이터 확인을 위한 콘솔 로그
-                setVodData(data);
+        axios.get(`http://localhost:7200/contents/detail/cast/${encodeURIComponent(name)}`)
+            .then(response => {
+                console.log('Fetched actor VOD details:', response.data); // 데이터 확인을 위한 콘솔 로그
+                setVodData(response.data);
             })
             .catch(error => console.error('Error fetching actor VOD details:', error));
     }, [name]);
@@ -43,7 +42,7 @@ const ActorDetailPage = () => {
 
         if (!isAddedToBreadList) {
             try {
-                const response = await axios.post('http://localhost:7100/bbang/cast', {
+                const response = await axios.post('http://localhost:7000/bbang/cast', {
                     setbxId: parseInt(setbxId, 10),
                     vodCast: name,
                     vodCastPoster: vodData.length > 0 ? vodData[0].vodPoster : ''
@@ -62,7 +61,7 @@ const ActorDetailPage = () => {
             }
         } else {
             try {
-                const response = await axios.delete('http://localhost:7100/bbang/cast', {
+                const response = await axios.delete('http://localhost:7000/bbang/cast', {
                     data: {
                         setbxId: parseInt(setbxId, 10),
                         vodCast: name

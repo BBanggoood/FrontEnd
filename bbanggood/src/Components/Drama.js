@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../CSS/Drama.css';
 
 const Drama = () => {
@@ -14,15 +15,11 @@ const Drama = () => {
     useEffect(() => {
         const setbxId = localStorage.getItem('setbxId');
         if (setbxId) {
-            fetch('http://localhost:7400/recommend/drama', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ setbxId }),
+            axios.post('http://localhost:7400/recommend/drama', {
+                setbxId
             })
-                .then(response => response.json())
-                .then(data => {
+                .then(response => {
+                    const data = response.data;
                     const firstTen = data.slice(0, 10);
                     const secondTen = data.slice(10, 20);
                     setAllRecommendation1Contents(firstTen);
@@ -73,9 +70,9 @@ const Drama = () => {
     const [allPopularContents, setAllPopularContents] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:7200/contents/drama/top')
-            .then(response => response.json())
-            .then(data => {
+        axios.get('http://localhost:7200/contents/drama/top')
+            .then(response => {
+                const data = response.data;
                 setAllPopularContents(data);
                 setPopularContents(data.slice(0, 5)); // 첫 5개 아이템을 초기값으로 설정
             })
