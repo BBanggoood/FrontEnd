@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../CSS/MainPage.css';
 
 // 이미지 import
@@ -17,9 +18,9 @@ const MainPage = () => {
     const [allPopularContents, setAllPopularContents] = useState([]);
 
     useEffect(() => {
-        fetch('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/main/top')
-            .then(response => response.json())
-            .then(data => {
+        axios.get('http://localhost:7200/contents/main/top')
+            .then(response => {
+                const data = response.data;
                 setAllPopularContents(data);
                 setPopularContents(data.slice(0, 5)); // 첫 5개 아이템을 초기값으로 설정
             })
@@ -51,15 +52,11 @@ const MainPage = () => {
     useEffect(() => {
         const setbxId = localStorage.getItem('setbxId');
         if (setbxId) {
-            fetch('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/recommend/main', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ setbxId }),
+            axios.post('http://localhost:7400/recommend/main', {
+                setbxId
             })
-                .then(response => response.json())
-                .then(data => {
+                .then(response => {
+                    const data = response.data;
                     // 20개의 항목 중 10개를 랜덤으로 선택
                     const shuffled = data.sort(() => 0.5 - Math.random());
                     const selected = shuffled.slice(0, 10);

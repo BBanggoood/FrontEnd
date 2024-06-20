@@ -25,11 +25,10 @@ const DirectorDetailPage = () => {
         setIsAddedToBreadList(storedIsAdded === 'true');
 
         // 감독 이름을 사용하여 VOD 정보를 요청
-        fetch(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/detail/director/${encodeURIComponent(name)}`)
-            .then(response => response.json())
-            .then(data => {
-                console.log('Fetched director VOD details:', data); // 데이터 확인을 위한 콘솔 로그
-                setVodData(data);
+        axios.get(`http://localhost:7200/contents/detail/director/${encodeURIComponent(name)}`)
+            .then(response => {
+                console.log('Fetched director VOD details:', response.data); // 데이터 확인을 위한 콘솔 로그
+                setVodData(response.data);
             })
             .catch(error => console.error('Error fetching director VOD details:', error));
     }, [name]);
@@ -43,7 +42,7 @@ const DirectorDetailPage = () => {
 
         if (!isAddedToBreadList) {
             try {
-                const response = await axios.post('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/director', {
+                const response = await axios.post('http://localhost:7100/bbang/director', {
                     setbxId: parseInt(setbxId, 10),
                     vodDirector: name,
                     vodDirectorPoster: vodData.length > 0 ? vodData[0].vodPoster : ''
@@ -62,7 +61,7 @@ const DirectorDetailPage = () => {
             }
         } else {
             try {
-                const response = await axios.delete('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/director', {
+                const response = await axios.delete('http://localhost:7100/bbang/director', {
                     data: {
                         setbxId: parseInt(setbxId, 10),
                         vodDirector: name

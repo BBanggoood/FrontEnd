@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../CSS/TVShow.css';
 
 const TVShow = () => {
@@ -14,15 +15,11 @@ const TVShow = () => {
     useEffect(() => {
         const setbxId = localStorage.getItem('setbxId');
         if (setbxId) {
-            fetch('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/recommend/tv', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ setbxId }),
+            axios.post('http://localhost:7400/recommend/tv', {
+                setbxId
             })
-                .then(response => response.json())
-                .then(data => {
+                .then(response => {
+                    const data = response.data;
                     const firstTen = data.slice(0, 10);
                     const secondTen = data.slice(10, 20);
                     setAllRecommendation1Contents(firstTen);
@@ -73,9 +70,9 @@ const TVShow = () => {
     const [allPopularContents, setAllPopularContents] = useState([]);
 
     useEffect(() => {
-        fetch('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/tv/top')
-            .then(response => response.json())
-            .then(data => {
+        axios.get('http://localhost:7200/contents/tv/top')
+            .then(response => {
+                const data = response.data;
                 setAllPopularContents(data);
                 setPopularContents(data.slice(0, 5)); // 첫 5개 아이템을 초기값으로 설정
             })

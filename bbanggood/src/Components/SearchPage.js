@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { MdSettingsVoice } from 'react-icons/md';
 import { IoSearchSharp } from 'react-icons/io5';
 import CustomKeyboard from './CustomKeyboard';
@@ -19,12 +20,8 @@ const SearchPage = () => {
     if (query) {
       const fetchData = async () => {
         try {
-          const response = await fetch(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/search/${encodeURIComponent(query)}`);
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          const data = await response.json();
-          setResults(data);
+          const response = await axios.get(`http://localhost:7200/contents/search/${encodeURIComponent(query)}`);
+          setResults(response.data);
         } catch (error) {
           console.error('Error fetching search results:', error);
         }
