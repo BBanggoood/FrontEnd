@@ -22,16 +22,10 @@ const VodDetailPage = () => {
 
         // vodId를 사용하여 VOD 상세 정보를 요청
         if (vodId) {
-            fetch(`https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/contents/detail/vod/${vodId}`)
+            axios.get(`http://localhost:7200/contents/detail/vod/${vodId}`)
                 .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Fetched VOD details:', data); // 데이터 확인을 위한 콘솔 로그
-                    setVodData(data);
+                    console.log('Fetched VOD details:', response.data); // 데이터 확인을 위한 콘솔 로그
+                    setVodData(response.data);
                 })
                 .catch(error => console.error('Error fetching VOD details:', error));
         }
@@ -52,7 +46,7 @@ const VodDetailPage = () => {
         if (!isAddedToBreadList) {
             try {
                 console.log("시도");
-                const response = await axios.post('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/vod', {
+                const response = await axios.post('http://localhost:7100/bbang/vod', {
                     setbxId: parseInt(setbxId, 10),
                     vodId: vodId,
                     vodPoster: vodData.vodPoster
@@ -72,7 +66,7 @@ const VodDetailPage = () => {
             }
         } else {
             try {
-                const response = await axios.delete('https://hxsx04ukq3.execute-api.ap-northeast-2.amazonaws.com/bbanggoood-stage/bbang/vod', {
+                const response = await axios.delete('http://localhost:7100/bbang/vod', {
                     data: {
                         setbxId: parseInt(setbxId, 10),
                         vodId: vodId
