@@ -1,3 +1,5 @@
+/* SearchPage.css */
+
 body, html {
     font-family: 'IBM Plex Sans KR', sans-serif;
 }
@@ -184,4 +186,20 @@ body, html {
     .search-result-box {
         width: 100%;
     }
+}
+
+/* 음성 검색 상태를 표시하는 마이크 아이콘 스타일 */
+.listening-indicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    color: #FFF;
+    transition: width 0.3s ease, height 0.3s ease; /* 크기 변화 애니메이션 추가 */
 }
