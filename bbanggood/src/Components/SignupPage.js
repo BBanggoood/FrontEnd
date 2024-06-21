@@ -126,7 +126,7 @@ const SignupPage = () => {
                             value={formData.userSex}
                             onChange={handleChange}
                         >
-                            <option value="">성별 선택</option>
+                            <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;성별 선택</option>
                             <option value="Male">남자</option>
                             <option value="Female">여자</option>
                         </select>

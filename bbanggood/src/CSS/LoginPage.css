@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #B89079; /* 배경색 지정 */
+    background-color: #F2D4C2; /* 배경색 지정 */
 }
 
 .login-rectangle {
@@ -19,7 +19,7 @@
 }
 
 .inner-rectangle {
-    width: 1000px; /* 크기 증가 */
+    width: 500px; /* 크기 증가 */
     height: 500px; /* 높이 증가 */
     background: #FFF4EF; /* 내부 사각형의 배경색 지정 */
     border-radius: 34px;
