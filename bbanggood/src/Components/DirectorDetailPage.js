@@ -13,6 +13,15 @@ const DirectorDetailPage = () => {
     const [showDropdown, setShowDropdown] = useState(false);
     const [vodData, setVodData] = useState([]); // VOD 데이터를 저장할 상태
 
+    const fetchVodData = (directorName, sortBy) => {
+        axios.get(`http://localhost:7200/contents/detail/director/${encodeURIComponent(directorName)}?sortBy=${sortBy}`)
+            .then(response => {
+                console.log('Fetched director VOD details:', response.data); // 데이터 확인을 위한 콘솔 로그
+                setVodData(response.data);
+            })
+            .catch(error => console.error('Error fetching director VOD details:', error));
+    };
+
     useEffect(() => {
         const setbxId = localStorage.getItem('setbxId');
         if (!setbxId) {
@@ -25,13 +34,8 @@ const DirectorDetailPage = () => {
         setIsAddedToBreadList(storedIsAdded === 'true');
 
         // 감독 이름을 사용하여 VOD 정보를 요청
-        axios.get(`http://localhost:7200/contents/detail/director/${encodeURIComponent(name)}`)
-            .then(response => {
-                console.log('Fetched director VOD details:', response.data); // 데이터 확인을 위한 콘솔 로그
-                setVodData(response.data);
-            })
-            .catch(error => console.error('Error fetching director VOD details:', error));
-    }, [name]);
+        fetchVodData(name, sortOption === '최신순' ? 'vodOpenAt' : 'vodCount');
+    }, [name, sortOption]);
 
     const handleAddToBreadList = async () => {
         const setbxId = localStorage.getItem('setbxId'); // localStorage에서 setbxId를 가져옴
