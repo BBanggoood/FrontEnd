@@ -122,7 +122,7 @@ const Kids = () => {
                     </div>
                 </div>
                 <div className="kids-page-content-section">
-                    <h2>추천 1</h2>
+                    <h2>이 작품은 어때요?</h2>
                     <div className="content-container">
                         <div className="content-arrow-container left">
                             {recommendation1Page === 2 && (
@@ -146,7 +146,7 @@ const Kids = () => {
                     </div>
                 </div>
                 <div className="kids-page-content-section">
-                    <h2>추천 2</h2>
+                    <h2>당신이 좋아할 작품들만 모았어요!</h2>
                     <div className="content-container">
                         <div className="content-arrow-container left">
                             {recommendation2Page === 2 && (
